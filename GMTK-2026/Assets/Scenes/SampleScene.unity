@@ -13963,7 +13963,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894342176}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 0.2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -14606,6 +14606,7 @@ MonoBehaviour:
   wizardModel: {fileID: 1422579319}
   an: {fileID: 1422579320}
   wizardHat: {fileID: 810567677}
+  spell3: {fileID: 2108630078563473599, guid: e6aa80cbc56028faab1fcc1414124b19, type: 3}
 --- !u!54 &1936112438
 Rigidbody:
   m_ObjectHideFlags: 0

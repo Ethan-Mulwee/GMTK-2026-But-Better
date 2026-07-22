@@ -45,6 +45,7 @@ public class WizardController : MonoBehaviour
     [SerializeField] Animator an;
     // NOTE: temp hate procedual animation testing
     [SerializeField] GameObject wizardHat;
+    [SerializeField] GameObject spell3;
 
     Rigidbody rb;
     Vector3 movementInput;
@@ -70,6 +71,7 @@ public class WizardController : MonoBehaviour
         Jump();
         Dash();
         Mount();
+        SpellIGuess();
         AnimParameters();
     }
 
@@ -107,6 +109,13 @@ public class WizardController : MonoBehaviour
             if (dashTimer <= 0.0f) {
                 dashing = false;
             }
+        }
+    }
+
+    void SpellIGuess() {
+        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)) {
+            Debug.Log("Did the thing");
+            Instantiate(spell3, gameObject.transform.position, Quaternion.identity);
         }
     }
 
