@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spell_3
   speed: 7.5
+  damage: 10
 --- !u!54 &5915745118485899901
 Rigidbody:
   m_ObjectHideFlags: 0

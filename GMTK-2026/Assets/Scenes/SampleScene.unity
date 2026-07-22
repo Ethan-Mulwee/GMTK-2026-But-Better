@@ -13092,6 +13092,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7899ce0507fdcad9d0aef0f25fb4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  maxHealth: 25
+  health: 25
   restingHeight: 0.4
   springStrength: 1
   springDamping: 0.1
@@ -13677,6 +13679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a05f6374e1d8ad7818365d30a0f336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 100
   restingHeight: 0.53
   springStrength: 300
   springDamping: 15

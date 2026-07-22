@@ -3,6 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyScript : MonoBehaviour
 {
+    [Header("Enemy Stats")]
+    [SerializeField] float maxHealth;
+    [SerializeField] public float health;
 
     [Header("Position Spring")]
     [SerializeField] float restingHeight = 0.4f;

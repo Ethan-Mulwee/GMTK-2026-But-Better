@@ -4,6 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class WizardController : MonoBehaviour
 {
+    [Header("Player Stats")]
+    [SerializeField] float maxHealth;
+    [SerializeField] public float health;
+    
     [Header("Position Spring")]
     [SerializeField] float restingHeight = 0.4f;
     [SerializeField] float springStrength = 1.0f;
