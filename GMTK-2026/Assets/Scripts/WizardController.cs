@@ -197,7 +197,7 @@ public class WizardController : MonoBehaviour
 
         // Mouse input
         RaycastHit hit;
-        Physics.Raycast(RayFromCursor(), out hit);
+        Physics.Raycast(RayFromCursor(), out hit, Mathf.Infinity, 1 << 7);
         mousePos = hit.point;
         Vector3 lookDir = (mousePos - transform.position).normalized;
         lookDir.y = 0;
