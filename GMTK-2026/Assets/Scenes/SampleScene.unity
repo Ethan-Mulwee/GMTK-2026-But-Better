@@ -13681,6 +13681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 100
+  dashCooldown: 1.5
   restingHeight: 0.53
   springStrength: 300
   springDamping: 15

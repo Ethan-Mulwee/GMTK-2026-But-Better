@@ -7,6 +7,7 @@ public class WizardController : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] float maxHealth;
     [SerializeField] public float health;
+    [SerializeField] float dashCooldown;
     
     [Header("Position Spring")]
     [SerializeField] float restingHeight = 0.4f;
@@ -95,13 +96,22 @@ public class WizardController : MonoBehaviour
 
     Vector3 dashVector = Vector3.zero;
     float dashTimer = 0.0f;
+    float dashCooldownTimer = 0.0f;
     void Dash() {
-        if (Input.GetKeyDown(KeyCode.T)) {
-            dashing = true;
-            dashVector = transform.forward;
-            dashVector = new Vector3(dashVector.x, 0, dashVector.z);
-            dashTimer = 0.3f;
-            rb.AddForce(dashVector, ForceMode.Impulse);
+        if (dashCooldownTimer <= 0)
+        {
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                dashing = true;
+                dashVector = gameObject.GetComponent<Rigidbody>().linearVelocity.normalized;
+                dashVector = new Vector3(dashVector.x, 0, dashVector.z);
+                dashTimer = 0.3f;
+                rb.AddForce(dashVector, ForceMode.Impulse);
+                dashCooldownTimer = dashCooldown;
+            }
+        } else
+        {
+            dashCooldownTimer -= Time.deltaTime;
         }
 
         if (dashing) {
