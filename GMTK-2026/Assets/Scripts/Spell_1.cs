@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Spell_3 : MonoBehaviour
+public class Spell_1 : MonoBehaviour
 {
-    [SerializeField] float speed;
+    float destroyTimer = 2.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,6 +13,12 @@ public class Spell_3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.forward * speed * Time.deltaTime;
+        if (destroyTimer > 0.0f)
+        {
+            destroyTimer -= Time.deltaTime;
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 }

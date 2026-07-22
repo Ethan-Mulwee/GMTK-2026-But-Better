@@ -46,6 +46,8 @@ public class WizardController : MonoBehaviour
     // NOTE: temp hate procedual animation testing
     [SerializeField] GameObject wizardHat;
     [SerializeField] GameObject spell3;
+    [SerializeField] GameObject spell2;
+    [SerializeField] GameObject spell1;
 
     Rigidbody rb;
     Vector3 movementInput;
@@ -67,11 +69,11 @@ public class WizardController : MonoBehaviour
 
     void Update() {
         GetInput();
-        Grab();
         Jump();
         Dash();
-        Mount();
-        SpellIGuess();
+        Spell3();
+        Spell2();
+        Spell1();
         AnimParameters();
     }
 
@@ -112,25 +114,59 @@ public class WizardController : MonoBehaviour
         }
     }
 
-    void SpellIGuess() {
-        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)) {
-            Debug.Log("Did the thing");
-            Instantiate(spell3, gameObject.transform.position, Quaternion.identity);
+    [Header ("Spell 3")]
+    [SerializeField] float spell3Cooldown;
+    [SerializeField] float spell3Timer = 0.0f;
+
+    void Spell3() {
+        if (spell3Timer <= 0.0f)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+            {
+                Instantiate(spell3, gameObject.transform.position, Quaternion.identity);
+                spell3Timer = spell3Cooldown;
+            }
+        } else
+        {
+            spell3Timer -= Time.deltaTime;
         }
     }
 
-    void Mount() {
-        if (Input.GetKeyDown(KeyCode.C)) {
-            if (selectedBody.gameObject.TryGetComponent<BroomController>(out BroomController broomController)) {
-                isRidingBroom = true;
-                broomBody = selectedBody;
-                
-                gameObject.transform.position = broomBody.position + broomBody.transform.up*0.1f;
-                Quaternion rotation_down = Quaternion.LookRotation(Vector3.down);
-                gameObject.transform.rotation = broomBody.rotation * rotation_down;
-                broomJoint = gameObject.AddComponent(typeof(FixedJoint)) as FixedJoint;
-                broomJoint.connectedBody = broomBody;
+    [Header("Spell 2")]
+    [SerializeField] float spell2Cooldown;
+    [SerializeField] float spell2Timer = 0.0f;
+
+    void Spell2()
+    {
+        if (spell2Timer <= 0.0f)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+            {
+                Instantiate(spell2, gameObject.transform.position, Quaternion.identity);
+                spell2Timer = spell2Cooldown;
             }
+        } else
+        {
+            spell2Timer -= Time.deltaTime;
+        }
+    }
+
+    [Header("Spell 1")]
+    [SerializeField] float spell1Cooldown;
+    [SerializeField] float spell1Timer = 0.0f;
+
+    void Spell1()
+    {
+        if (spell1Timer <= 0.0f)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                Instantiate(spell1, gameObject.transform.position, Quaternion.identity);
+                spell1Timer = spell1Cooldown;
+            }
+        } else
+        {
+            spell1Timer -= Time.deltaTime;
         }
     }
 
@@ -143,26 +179,6 @@ public class WizardController : MonoBehaviour
     Rigidbody selectedBody;
     Vector3 relativeGrabPosition;
     bool grabbing;
-    void Grab() {
-        if (Input.GetKeyDown(KeyCode.F)) {
-            if (grabbing) {
-                // give object players velocity on dropping
-                selectedBody.AddForce(rb.linearVelocity, ForceMode.Impulse);
-                // add throw force to object
-                selectedBody.AddForce(movementInput.normalized*grabThrowForce, ForceMode.Impulse);
-                grabbing = false;
-                return;
-            }
-            FindBodySelection();
-            if (selectedBody != null)
-                grabbing = true;
-                grabLift = 0.5f;
-        }
-        if (Input.GetKey(KeyCode.E))
-            grabLift += grabVerticalSensitivity*Time.deltaTime;
-        if (Input.GetKey(KeyCode.Q))
-            grabLift -= grabVerticalSensitivity*Time.deltaTime;
-    }
 
     void GrabForce() {
         if (grabbing) {

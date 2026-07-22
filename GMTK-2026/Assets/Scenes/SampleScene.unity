@@ -14607,6 +14607,14 @@ MonoBehaviour:
   an: {fileID: 1422579320}
   wizardHat: {fileID: 810567677}
   spell3: {fileID: 2108630078563473599, guid: e6aa80cbc56028faab1fcc1414124b19, type: 3}
+  spell2: {fileID: 1730977595967081316, guid: 0335270f17a2b9b4698c032bdcef112f, type: 3}
+  spell1: {fileID: 6703675625407457394, guid: d0cddbe4163f2d44a8fdb7e9aabf92b9, type: 3}
+  spell3Cooldown: 0.5
+  spell3Timer: 0
+  spell2Cooldown: 3
+  spell2Timer: 0
+  spell1Cooldown: 6
+  spell1Timer: 0
 --- !u!54 &1936112438
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Spell_3 : MonoBehaviour
+public class Spell_2 : MonoBehaviour
 {
     [SerializeField] float speed;
 
