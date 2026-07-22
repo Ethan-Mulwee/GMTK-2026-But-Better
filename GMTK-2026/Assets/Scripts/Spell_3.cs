@@ -18,7 +18,6 @@ public class Spell_3 : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("hit");
         Destroy(gameObject);
     }
 }
