@@ -15,4 +15,10 @@ public class Spell_3 : MonoBehaviour
     {
         transform.position += Vector3.forward * speed * Time.deltaTime;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("hit");
+        Destroy(gameObject);
+    }
 }
