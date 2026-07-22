@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5109272840186978256}
   - component: {fileID: 5916173113359272432}
   - component: {fileID: 839046515903050023}
+  - component: {fileID: 6001677591516088166}
   m_Layer: 0
   m_Name: SpellThingy3
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 2108630078563473599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.49318, y: 0, z: 1.40971}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,9 +107,23 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6001677591516088166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108630078563473599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4669f03f923d840ae543f0ad951988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spell_3
+  player: {fileID: 0}
+  speed: 7.5
