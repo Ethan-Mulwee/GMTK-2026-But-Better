@@ -159,7 +159,7 @@ public class WizardController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
             {
-                Instantiate(spell1, new Vector3(mousePos.x, 0, mousePos.z), Quaternion.identity);
+                Instantiate(spell1, new Vector3(mousePos.x, 1, mousePos.z), Quaternion.identity);
                 spell1Timer = spell1Cooldown;
             }
         } else
