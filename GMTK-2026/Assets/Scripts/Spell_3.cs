@@ -14,7 +14,7 @@ public class Spell_3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.forward * speed * Time.deltaTime;
+        transform.position += gameObject.transform.forward * speed * Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision collision)

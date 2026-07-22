@@ -55,13 +55,9 @@ public class WizardController : MonoBehaviour
 
     Rigidbody rb;
     Vector3 movementInput;
-    Vector3 lookInput;
     Vector3 velocity;
     Quaternion targetOrientation = Quaternion.identity;
-
-    bool isRidingBroom = false;
-    Rigidbody broomBody;
-    FixedJoint broomJoint;
+    Vector3 mousePos;
 
     // State
     bool grounded = true;
@@ -86,8 +82,6 @@ public class WizardController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        GrabForce();
-        if (isRidingBroom) return;
         FloatForce();
         OrientationForce();
         MoveForce();
@@ -127,7 +121,7 @@ public class WizardController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
             {
-                Instantiate(spell3, gameObject.transform.position, Quaternion.identity);
+                Instantiate(spell3, gameObject.transform.position, gameObject.transform.rotation);
                 spell3Timer = spell3Cooldown;
             }
         } else
@@ -146,7 +140,7 @@ public class WizardController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
             {
-                Instantiate(spell2, gameObject.transform.position, Quaternion.identity);
+                Instantiate(spell2, gameObject.transform.position, gameObject.transform.rotation);
                 spell2Timer = spell2Cooldown;
             }
         } else
@@ -165,7 +159,7 @@ public class WizardController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
             {
-                Instantiate(spell1, gameObject.transform.position, Quaternion.identity);
+                Instantiate(spell1, new Vector3(mousePos.x, 0, mousePos.z), Quaternion.identity);
                 spell1Timer = spell1Cooldown;
             }
         } else
@@ -184,64 +178,30 @@ public class WizardController : MonoBehaviour
     Vector3 relativeGrabPosition;
     bool grabbing;
 
-    void GrabForce() {
-        if (grabbing) {
-            Vector3 force = (relativeGrabPosition+transform.position+new Vector3(0,grabLift,0)) - selectedBody.position;
-            force *= grabStrength;
-            Vector3 damping = -selectedBody.linearVelocity*grabDamping;
-            force += damping; 
-            selectedBody.AddForce(force, ForceMode.Impulse);
-
-            // Move object
-            relativeGrabPosition += lookInput*grabMoveSensitivity;
-        } else {
-            FindBodySelection();
-        }
-    }
-
-    void FindBodySelection() {
-        RaycastHit[] raycastHits = new RaycastHit[grabCastCount];
-        for (int i = 0; i < grabCastCount; i++) {
-            float angle = (i/((float)grabCastCount))*Mathf.PI*2.0f;
-            Ray ray = new Ray(transform.position, new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)));
-            Physics.SphereCast(ray, grabSphereRadius, out raycastHits[i], grabCastLength);
-        }
-        // Find closest body
-        Rigidbody closestBody = null;
-        for (int i = 0; i < grabCastCount; i++) {
-            Rigidbody body = raycastHits[i].rigidbody;
-            if (closestBody == null && body != null) {
-                closestBody = body;
-                continue;
-            }
-            if (closestBody != null && body != null) {
-                if (Vector3.Distance(transform.position, closestBody.position) > Vector3.Distance(transform.position, body.position)) 
-                    closestBody = body;
-            }
-        }
-
-        selectedBody = closestBody;
-        if (selectedBody != null ) {
-            relativeGrabPosition = selectedBody.transform.position - transform.position;
-        }
-    }
-
     void Jump() {
         if (Input.GetKeyDown(KeyCode.Space) && grounded) {
             rb.AddForce(Vector3.up*jumpStrength, ForceMode.Impulse);
             grounded = false;
         }
     }
+    Ray RayFromCursor()
+    {
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height, 0f));
+        return ray;
+    }
 
     void GetInput() {
         movementInput = Vector3.ClampMagnitude(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")), 1);
-        lookInput = Vector3.ClampMagnitude(new Vector3(Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical")), 1);
         var matrix = Matrix4x4.Rotate(Quaternion.Euler(0,45,0));
         movementInput = matrix.MultiplyPoint3x4(movementInput);
-        if (movementInput != Vector3.zero) {
-            targetOrientation = Quaternion.LookRotation(movementInput, Vector3.up);
-        }
-        lookInput = matrix.MultiplyPoint3x4(lookInput);
+
+        // Mouse input
+        RaycastHit hit;
+        Physics.Raycast(RayFromCursor(), out hit);
+        mousePos = hit.point;
+        Vector3 lookDir = (mousePos - transform.position).normalized;
+        lookDir.y = 0;
+        targetOrientation = Quaternion.LookRotation(lookDir, Vector3.up);
     }
 
     void MoveForce() {
