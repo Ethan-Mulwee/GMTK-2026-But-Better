@@ -5,6 +5,8 @@ public class Spell_2 : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float damage;
 
+    Spell_Util util = new Spell_Util();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +27,8 @@ public class Spell_2 : MonoBehaviour
             Debug.Log(collision.gameObject.GetComponent<EnemyScript>().health);
         }
         catch { }
+
+        util.checkCollision(collision);
 
         Destroy(gameObject);
     }
