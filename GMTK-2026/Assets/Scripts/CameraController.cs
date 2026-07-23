@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private GameObject target;
+    public GameObject target;
     
 
     // Update is called once per frame

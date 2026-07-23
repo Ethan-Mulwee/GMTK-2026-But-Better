@@ -25,17 +25,17 @@ public class WizardController : MonoBehaviour
     [SerializeField] float maxAcceleration = 10.0f;
     [SerializeField] float jumpStrength = 1.0f;
 
-    [Header("Object Grab Settings")]
-    [SerializeField] private int grabCastCount = 50;
-    [SerializeField] private float grabCastLength = 4.0f;
-    [SerializeField] private float grabSphereRadius = 0.5f;
-    [Range(0.2f, 10.0f)]
-    [SerializeField] private float grabStrength = 1.0f;
-    [SerializeField] private float grabLift = 1.0f;
-    [SerializeField] private float grabDamping = 0.1f;
-    [SerializeField] private float grabThrowForce = 5.0f; 
-    [SerializeField] private float grabMoveSensitivity = 0.05f;
-    [SerializeField] private float grabVerticalSensitivity = 1.5f;
+    // [Header("Object Grab Settings")]
+    // [SerializeField] private int grabCastCount = 50;
+    // [SerializeField] private float grabCastLength = 4.0f;
+    // [SerializeField] private float grabSphereRadius = 0.5f;
+    // [Range(0.2f, 10.0f)]
+    // [SerializeField] private float grabStrength = 1.0f;
+    // [SerializeField] private float grabLift = 1.0f;
+    // [SerializeField] private float grabDamping = 0.1f;
+    // [SerializeField] private float grabThrowForce = 5.0f; 
+    // [SerializeField] private float grabMoveSensitivity = 0.05f;
+    // [SerializeField] private float grabVerticalSensitivity = 1.5f;
 
 
     [Header("Gizmo Drawing")]
@@ -50,6 +50,7 @@ public class WizardController : MonoBehaviour
     [SerializeField] Animator an;
     // NOTE: temp hate procedual animation testing
     [SerializeField] GameObject wizardHat;
+    [SerializeField] GameObject cam_Pivot;
     [SerializeField] GameObject spell3;
     [SerializeField] GameObject spell2;
     [SerializeField] GameObject spell1;
@@ -291,29 +292,36 @@ public class WizardController : MonoBehaviour
         rb.AddTorque((rotationAxis*(rotationRadians*orientationSpringStrength))-(rb.angularVelocity*orientationSpringDamping));
     }
 
-    void OnDrawGizmos() {
-        for (int i = 0; i < grabCastCount; i++) {
-            float angle = (i/((float)grabCastCount))*Mathf.PI*2.0f;
-            Vector3 rayPosition = transform.position;
-            Vector3 rayDirection = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle))*grabCastLength;
-            if (drawGrabCasting) Gizmos.DrawRay(rayPosition, rayDirection);
-        }
+    // void OnDrawGizmos() {
+    //     for (int i = 0; i < grabCastCount; i++) {
+    //         float angle = (i/((float)grabCastCount))*Mathf.PI*2.0f;
+    //         Vector3 rayPosition = transform.position;
+    //         Vector3 rayDirection = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle))*grabCastLength;
+    //         if (drawGrabCasting) Gizmos.DrawRay(rayPosition, rayDirection);
+    //     }
 
         // Highlight selection
-        if (selectedBody != null) {
-            if (drawHighlightBodySelection) Gizmos.DrawWireSphere(selectedBody.position, drawHighlightRadius);
-        }
-        if (selectedBody != null && grabbing) { 
-          if (drawRelativeGrawPosition) Gizmos.DrawSphere(relativeGrabPosition+transform.position+ new Vector3(0,grabLift,0), 0.2f);
-        }  
-        if (selectedBody != null && drawSelectionBeizer) {
-            Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
-            Handles.DrawBezier(transform.TransformPoint(new Vector3(-0.17f,-0.10f,0.2f)), selectedBody.transform.position, transform.forward+transform.position, (transform.position+selectedBody.transform.position)*0.5f, Color.white, EditorGUIUtility.whiteTexture, 1.0f);
-        }
-    }
+    //     if (selectedBody != null) {
+    //         if (drawHighlightBodySelection) Gizmos.DrawWireSphere(selectedBody.position, drawHighlightRadius);
+    //     }
+    //     if (selectedBody != null && grabbing) { 
+    //       if (drawRelativeGrawPosition) Gizmos.DrawSphere(relativeGrabPosition+transform.position+ new Vector3(0,grabLift,0), 0.2f);
+    //     }  
+    //     if (selectedBody != null && drawSelectionBeizer) {
+    //         Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
+    //         Handles.DrawBezier(transform.TransformPoint(new Vector3(-0.17f,-0.10f,0.2f)), selectedBody.transform.position, transform.forward+transform.position, (transform.position+selectedBody.transform.position)*0.5f, Color.white, EditorGUIUtility.whiteTexture, 1.0f);
+    //     }
+    // }
 
     void AnimParameters() {
         an.SetFloat("Velocity", movementInput.magnitude);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Camera Trigger")
+        {
+            cam_Pivot.GetComponent<CameraController>().target = other.gameObject;
+        }
+    }
 }
