@@ -72,7 +72,7 @@ public class WizardController : MonoBehaviour
 
     void Update() {
         GetInput();
-        Jump();
+        // Jump();
         Dash();
         Spell3();
         Spell2();
@@ -190,12 +190,12 @@ public class WizardController : MonoBehaviour
     Vector3 relativeGrabPosition;
     bool grabbing;
 
-    void Jump() {
-        if (Input.GetKeyDown(KeyCode.Space) && grounded) {
-            rb.AddForce(Vector3.up*jumpStrength, ForceMode.Impulse);
-            grounded = false;
-        }
-    }
+    // void Jump() {
+    //     if (Input.GetKeyDown(KeyCode.Space) && grounded) {
+    //         rb.AddForce(Vector3.up*jumpStrength, ForceMode.Impulse);
+    //         grounded = false;
+    //     }
+    // }
     Ray RayFromCursor()
     {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height, 0f));
