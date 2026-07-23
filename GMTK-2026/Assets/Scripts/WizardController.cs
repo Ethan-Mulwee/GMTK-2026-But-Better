@@ -8,6 +8,7 @@ public class WizardController : MonoBehaviour
     [SerializeField] float maxHealth;
     [SerializeField] public float health;
     [SerializeField] float dashCooldown;
+    public int keyCount = 0;
     
     [Header("Position Spring")]
     [SerializeField] float restingHeight = 0.4f;
@@ -38,12 +39,12 @@ public class WizardController : MonoBehaviour
     // [SerializeField] private float grabVerticalSensitivity = 1.5f;
 
 
-    [Header("Gizmo Drawing")]
-    [SerializeField] bool drawGrabCasting = false;
-    [SerializeField] bool drawRelativeGrawPosition = false;
-    [SerializeField] bool drawHighlightBodySelection = true;
-    [SerializeField] float drawHighlightRadius = 0.75f;
-    [SerializeField] bool drawSelectionBeizer = true;
+    // [Header("Gizmo Drawing")]
+    // [SerializeField] bool drawGrabCasting = false;
+    // [SerializeField] bool drawRelativeGrawPosition = false;
+    // [SerializeField] bool drawHighlightBodySelection = true;
+    // [SerializeField] float drawHighlightRadius = 0.75f;
+    // [SerializeField] bool drawSelectionBeizer = true;
 
     [Header("Assets")]
     [SerializeField] GameObject wizardModel;
