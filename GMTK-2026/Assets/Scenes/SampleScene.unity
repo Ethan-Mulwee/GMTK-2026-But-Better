@@ -9445,11 +9445,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1131366467297466092, guid: cdd353295705f184b9c0914fa5f9628d,
-        type: 3}
-      propertyPath: roomID
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3681554819154172692, guid: cdd353295705f184b9c0914fa5f9628d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -10124,11 +10119,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 54873ac082abfda2eb44bde2ffc22de7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1301671064998854966, guid: 54873ac082abfda2eb44bde2ffc22de7,
         type: 3}
@@ -12231,8 +12221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1015262911131b478cab090105faa94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gamemode
-  goblinPF: {fileID: 5391829214864147986, guid: 86fbdfa7c138f9c4d9902abac8493b56,
-    type: 3}
 --- !u!4 &1703752593
 Transform:
   m_ObjectHideFlags: 0
@@ -13900,6 +13888,7 @@ MonoBehaviour:
   maxSpeed: 3
   acceleration: 10
   maxAcceleration: 10
+  jumpStrength: 4.5
   wizardModel: {fileID: 1422579319}
   an: {fileID: 1422579320}
   wizardHat: {fileID: 810567677}
@@ -14878,10 +14867,7 @@ SceneRoots:
   - {fileID: 570731535}
   - {fileID: 1575549252}
   - {fileID: 822244494}
-<<<<<<< HEAD
-=======
   - {fileID: 6235758817078275025}
->>>>>>> 69eaf15259a17e33587ea499cd68e4732eeea63c
   - {fileID: 1703752593}
   - {fileID: 259330291}
   - {fileID: 6603240512054234202}
