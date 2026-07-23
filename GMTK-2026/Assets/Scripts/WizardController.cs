@@ -203,7 +203,7 @@ public class WizardController : MonoBehaviour
 
     void GetInput() {
         movementInput = Vector3.ClampMagnitude(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")), 1);
-        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0,45,0));
+        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0,90,0));
         movementInput = matrix.MultiplyPoint3x4(movementInput);
 
         // Mouse input
