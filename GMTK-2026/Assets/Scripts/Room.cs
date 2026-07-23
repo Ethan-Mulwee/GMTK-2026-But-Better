@@ -4,7 +4,7 @@ public class Room : MonoBehaviour
 {
     bool cleared = false;
     [SerializeField] int roomID;
-    Gamemode.room layout;
+    static Gamemode.room layout;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,10 +22,13 @@ public class Room : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && !cleared)
         {
-            foreach (Gamemode.enemy e in layout.enemies)
+            if (layout.enemies.Length > 0)
             {
-                Instantiate(e.go, e.pos, Quaternion.Euler(e.rot));
-                cleared = true;
+                for (int i = 0; i < layout.enemies.Length; i++)
+                {
+                    Instantiate(layout.enemies[i].go, layout.enemies[i].pos, Quaternion.Euler(layout.enemies[i].rot));
+                    cleared = true;
+                }
             }
         }
     }

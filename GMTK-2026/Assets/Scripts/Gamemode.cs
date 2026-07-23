@@ -32,21 +32,25 @@ public class Gamemode : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rooms[0].enemies = new enemy[0];
-
-        rooms[1].enemies = new enemy[1];
-            rooms[1].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-
-        rooms[2].enemies = new enemy[2];
-            rooms[2].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-            rooms[2].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-
-        // TODO: Add the enemies for all the rooms
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    private void Awake()
+    {
+        rooms[0].enemies = new enemy[0];
+
+        rooms[1].enemies = new enemy[1];
+        rooms[1].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+
+        rooms[2].enemies = new enemy[2];
+        rooms[2].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        rooms[2].enemies[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+
+        // TODO: Add the enemies for all the rooms
     }
 }
