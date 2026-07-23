@@ -24,7 +24,7 @@ public class WizardController : MonoBehaviour
     [SerializeField] float maxSpeed = 20.0f;
     [SerializeField] float acceleration = 1.0f;
     [SerializeField] float maxAcceleration = 10.0f;
-    [SerializeField] float jumpStrength = 1.0f;
+    // [SerializeField] float jumpStrength = 1.0f;
 
     // [Header("Object Grab Settings")]
     // [SerializeField] private int grabCastCount = 50;
@@ -63,7 +63,7 @@ public class WizardController : MonoBehaviour
     Vector3 mousePos;
 
     // State
-    bool grounded = true;
+    // bool grounded = true;
     bool dashing = true;
 
     void OnEnable() {
@@ -262,9 +262,9 @@ public class WizardController : MonoBehaviour
             if (hitBody != null) {
                 hitBody.AddForceAtPosition(rayDirection*-springForce, hit.point);
             }
-            grounded = true;
+            // grounded = true;
         }
-        else {grounded = false;}
+        // else {grounded = false;}
     }
 
 

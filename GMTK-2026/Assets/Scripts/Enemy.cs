@@ -21,16 +21,15 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] float maxSpeed = 20.0f;
     [SerializeField] float acceleration = 1.0f;
     [SerializeField] float maxAcceleration = 10.0f;
-    [SerializeField] float jumpStrength = 1.0f;
-    [SerializeField ]GameObject target;
+    [SerializeField] GameObject target;
 
     Rigidbody rb;
-    bool grounded = true;
     Quaternion targetOrientation = Quaternion.identity;
     Vector3 velocity;
 
     void OnEnable() {
         rb = GetComponent<Rigidbody>();
+        target = GameObject.FindWithTag("Player");
     }
 
     void FixedUpdate() {
@@ -40,9 +39,9 @@ public class EnemyScript : MonoBehaviour
     }
 
     void MoveForce() {
-        Vector3 movement = (target.transform.position - gameObject.transform.position).normalized;
-        Vector3 goalVelocity = movement * maxSpeed;
-        velocity = Vector3.MoveTowards(velocity, goalVelocity, acceleration*Time.deltaTime);
+        Vector3 direction = (target.transform.position - gameObject.transform.position).normalized;
+        Vector3 goalVelocity = direction * maxSpeed;
+        velocity = Vector3.MoveTowards(velocity, goalVelocity, acceleration/* *Time.deltaTime */);
 
         Vector3 neededAcceleration = (velocity-rb.linearVelocity)/Time.deltaTime;
         neededAcceleration = Vector3.ClampMagnitude(neededAcceleration, maxAcceleration);
@@ -111,8 +110,6 @@ public class EnemyScript : MonoBehaviour
             if (hitBody != null) {
                 hitBody.AddForceAtPosition(rayDirection*-springForce, hit.point);
             }
-            grounded = true;
         }
-        else {grounded = false;}
     }
 }
