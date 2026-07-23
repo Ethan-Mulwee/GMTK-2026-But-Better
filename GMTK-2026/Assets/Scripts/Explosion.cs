@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class Spell_3 : MonoBehaviour
+public class Explosion : MonoBehaviour
 {
     Spell_Util util = new Spell_Util();
-
-    [SerializeField] float speed;
+    
     [SerializeField] float damage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,7 +15,7 @@ public class Spell_3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += gameObject.transform.forward * speed * Time.deltaTime;
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,7 +26,5 @@ public class Spell_3 : MonoBehaviour
         } catch { }
 
         util.checkCollision(collision);
-
-        Destroy(gameObject);
     }
 }

@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Spell_2 : MonoBehaviour
 {
+    Spell_Util util = new Spell_Util();
+
     [SerializeField] float speed;
     [SerializeField] float damage;
-
-    Spell_Util util = new Spell_Util();
+    bool firing = true;
+    [SerializeField] float explosionTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,7 +18,18 @@ public class Spell_2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += gameObject.transform.forward * speed * Time.deltaTime;
+        if (firing)
+        {
+            transform.position += gameObject.transform.forward * speed * Time.deltaTime;
+        } else
+        {
+            explosionTime -= Time.deltaTime;
+
+            if (explosionTime < 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,12 +37,15 @@ public class Spell_2 : MonoBehaviour
         try
         {
             collision.gameObject.GetComponent<EnemyScript>().health -= damage;
-            Debug.Log(collision.gameObject.GetComponent<EnemyScript>().health);
         }
         catch { }
 
         util.checkCollision(collision);
 
-        Destroy(gameObject);
+        gameObject.GetComponent<Collider>().enabled = false;
+
+        //Create fireball explosion
+        firing = false;
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 }
