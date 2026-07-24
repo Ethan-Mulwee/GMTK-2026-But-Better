@@ -30,12 +30,15 @@ public class EnemyScript : MonoBehaviour
     void OnEnable() {
         rb = GetComponent<Rigidbody>();
         target = GameObject.FindWithTag("Player");
+
+        health = maxHealth;
     }
 
     void FixedUpdate() {
         FloatForce();
         OrientationForce();
         MoveForce();
+        checkDeath();
     }
 
     void MoveForce() {
@@ -110,6 +113,14 @@ public class EnemyScript : MonoBehaviour
             if (hitBody != null) {
                 hitBody.AddForceAtPosition(rayDirection*-springForce, hit.point);
             }
+        }
+    }
+
+    void checkDeath()
+    {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
