@@ -82,6 +82,7 @@ public class WizardController : MonoBehaviour
 
     void LateUpdate() {
         VisualTilt();
+        checkDeath();
     }
 
     void FixedUpdate() {
@@ -323,6 +324,15 @@ public class WizardController : MonoBehaviour
         if (other.gameObject.tag == "Camera Trigger")
         {
             cam_Pivot.GetComponent<CameraController>().target = other.gameObject;
+        }
+    }
+
+    void checkDeath()
+    {
+        if (health <= 0)
+        {
+            // End game
+            Debug.Log("You died");
         }
     }
 }

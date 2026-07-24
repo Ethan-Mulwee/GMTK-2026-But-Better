@@ -25,14 +25,14 @@ public class Spell_1 : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         try
         {
-            collision.gameObject.GetComponent<EnemyScript>().health -= damage;
+            other.gameObject.GetComponent<EnemyScript>().health -= damage;
         }
         catch { }
 
-        util.checkCollision(collision.gameObject);
+        util.checkCollision(other.gameObject);
     }
 }

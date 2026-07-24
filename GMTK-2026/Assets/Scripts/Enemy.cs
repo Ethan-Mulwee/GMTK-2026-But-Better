@@ -6,6 +6,7 @@ public class EnemyScript : MonoBehaviour
     [Header("Enemy Stats")]
     [SerializeField] float maxHealth;
     [SerializeField] public float health;
+    [SerializeField] public float damage;
 
     [Header("Position Spring")]
     [SerializeField] float restingHeight = 0.4f;
