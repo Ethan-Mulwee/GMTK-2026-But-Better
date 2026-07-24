@@ -1,6 +1,10 @@
 using UnityEditor;
 using UnityEngine;
 
+public enum SelectedSpell {
+    Melee, Three, Two, One
+};
+
 [RequireComponent(typeof(Rigidbody))]
 public class WizardController : MonoBehaviour
 {
@@ -21,9 +25,13 @@ public class WizardController : MonoBehaviour
     [SerializeField] float orientationSpringDamping = 0.2f;
 
     [Header("Movement")]
-    [SerializeField] float maxSpeed = 20.0f;
-    [SerializeField] float acceleration = 1.0f;
-    [SerializeField] float maxAcceleration = 10.0f;
+    [SerializeField] float walkMaxSpeed = 3.0f;
+    [SerializeField] float walkAcceleration = 10.0f;
+    [SerializeField] float walkMaxAcceleration = 10.0f;
+
+    [SerializeField] float runMaxSpeed = 6.0f;
+    [SerializeField] float runAcceleration = 2.0f;
+    [SerializeField] float runMaxAcceleration = 10.0f;
     // [SerializeField] float jumpStrength = 1.0f;
 
     // [Header("Object Grab Settings")]
@@ -52,6 +60,7 @@ public class WizardController : MonoBehaviour
     // NOTE: temp hate procedual animation testing
     [SerializeField] GameObject wizardHat;
     [SerializeField] GameObject cam_Pivot;
+    [SerializeField] Animator animator;
     [SerializeField] GameObject spell3;
     [SerializeField] GameObject spell2;
     [SerializeField] GameObject spell1;
@@ -61,6 +70,11 @@ public class WizardController : MonoBehaviour
     Vector3 velocity;
     Quaternion targetOrientation = Quaternion.identity;
     Vector3 mousePos;
+    public SelectedSpell spell = SelectedSpell.Melee;
+    [SerializeField] Melee meleeScript;
+
+    public bool aiming = false;
+    public bool attacking = false;
 
     // State
     // bool grounded = true;
@@ -72,6 +86,7 @@ public class WizardController : MonoBehaviour
 
     void Update() {
         GetInput();
+        Attack();
         // Jump();
         Dash();
         Spell3();
@@ -88,39 +103,59 @@ public class WizardController : MonoBehaviour
         FloatForce();
         OrientationForce();
         MoveForce();
-        DashForce();
+        // DashForce();
     }
 
     void VisualTilt() {
         wizardModel.transform.rotation = Quaternion.AngleAxis(new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude*4.0f, transform.right)*transform.rotation;
-        wizardHat.transform.rotation = Quaternion.AngleAxis(Mathf.Clamp(new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude*-5.0f, -20.0f, 20.0f), transform.right)*wizardModel.transform.rotation;
+        if (!Input.GetKey(KeyCode.LeftShift))
+            wizardHat.transform.rotation = Quaternion.AngleAxis(Mathf.Clamp(new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude*-5.0f, -20.0f, 20.0f), transform.right)*wizardModel.transform.rotation;
     }
 
     Vector3 dashVector = Vector3.zero;
     float dashTimer = 0.0f;
     float dashCooldownTimer = 0.0f;
-    void Dash() {
-        if (dashCooldownTimer <= 0)
-        {
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                dashing = true;
-                dashVector = gameObject.GetComponent<Rigidbody>().linearVelocity.normalized;
-                dashVector = new Vector3(dashVector.x, 0, dashVector.z);
-                dashTimer = 0.3f;
-                rb.AddForce(dashVector, ForceMode.Impulse);
-                dashCooldownTimer = dashCooldown;
-            }
-        } else
-        {
-            dashCooldownTimer -= Time.deltaTime;
-        }
 
-        if (dashing) {
-            dashTimer -= Time.deltaTime;
-            if (dashTimer <= 0.0f) {
-                dashing = false;
-            }
+    void Dash() {
+        // if (dashCooldownTimer <= 0)
+        // {
+        //     if (Input.GetKeyDown(KeyCode.LeftShift))
+        //     {
+        //         dashing = true;
+        //         // dashVector = gameObject.GetComponent<Rigidbody>().linearVelocity.normalized;
+        //         // dashVector = new Vector3(dashVector.x, 0, dashVector.z);
+        //         dashVector = movementInput;
+        //         Ray ray = new Ray(transform.position, movementInput);
+        //         RaycastHit hit;
+        //         // if (Physics.Raycast(ray, out hit, 1.0f, ~(1 << 7))) {
+        //         //     Debug.Log(hit.collider.gameObject.name);
+        //         //     transform.position = hit.point;
+        //         // } else {
+        //         //     transform.position = transform.position + movementInput.normalized * 1.0f;
+        //         // }
+        //         dashTimer = 0.3f;
+        //         rb.AddForce(dashVector*10.0f, ForceMode.Impulse);
+        //         dashCooldownTimer = dashCooldown;
+        //     }
+        // } else
+        // {
+        //     dashCooldownTimer -= Time.deltaTime;
+
+        // }
+
+        // if (dashing) {
+        //     dashTimer -= Time.deltaTime;
+        //     if (dashTimer <= 0.0f) {
+        //         rb.AddForce(-dashVector*10.0f, ForceMode.Impulse);
+        //         dashing = false;
+        //     }
+        // }
+    }
+
+    void Attack() {
+        if (Input.GetMouseButtonDown(0) && aiming) {
+            animator.SetTrigger("Melee");
+            meleeScript.Attack();
         }
     }
 
@@ -181,9 +216,9 @@ public class WizardController : MonoBehaviour
     }
 
     void DashForce() {
-        if (dashing) {
-            rb.AddForce(dashVector*20.0f);
-        }
+        // if (dashing) {
+        //     rb.AddForce(dashVector*20.0f);
+        // }
     }
 
     Rigidbody selectedBody;
@@ -207,16 +242,36 @@ public class WizardController : MonoBehaviour
         var matrix = Matrix4x4.Rotate(Quaternion.Euler(0,90,0));
         movementInput = matrix.MultiplyPoint3x4(movementInput);
 
+        aiming = Input.GetMouseButton(1);
+        attacking = Input.GetMouseButton(0);
+
         // Mouse input
         RaycastHit hit;
         Physics.Raycast(RayFromCursor(), out hit, Mathf.Infinity, 1 << 7);
         mousePos = hit.point;
         Vector3 lookDir = (mousePos - transform.position).normalized;
         lookDir.y = 0;
-        targetOrientation = Quaternion.LookRotation(lookDir, Vector3.up);
+        
+        if (aiming)
+            targetOrientation = Quaternion.LookRotation(lookDir, Vector3.up);
+        else if (movementInput.magnitude > 0.1f)
+            targetOrientation = Quaternion.LookRotation(movementInput, Vector3.up);
     }
 
     void MoveForce() {
+        float maxSpeed = 0.0f;
+        float acceleration = 0.0f;
+        float maxAcceleration = 0.0f;
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            maxSpeed = runMaxSpeed;
+            acceleration = runAcceleration;
+            maxAcceleration = runMaxAcceleration;
+        } else {
+            maxSpeed = walkMaxSpeed;
+            acceleration = walkAcceleration;
+            maxAcceleration = walkMaxAcceleration;
+        }
+
         Vector3 goalVelocity = movementInput * maxSpeed;
         velocity = Vector3.MoveTowards(velocity, goalVelocity, acceleration*Time.deltaTime);
 
@@ -315,7 +370,12 @@ public class WizardController : MonoBehaviour
     // }
 
     void AnimParameters() {
-        an.SetFloat("Velocity", movementInput.magnitude);
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            an.SetFloat("Velocity", movementInput.magnitude);
+        }
+        else {
+            an.SetFloat("Velocity", movementInput.magnitude*0.5f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Avatar Mask
+  m_Mask: 00000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/Root
+    m_Weight: 0
+  - m_Path: Armature/Root/Ik_L
+    m_Weight: 0
+  - m_Path: Armature/Root/Ik_L/Pole_L
+    m_Weight: 0
+  - m_Path: Armature/Root/Ik_L/Pole_L/Pole_L_end
+    m_Weight: 0
+  - m_Path: Armature/Root/Ik_R
+    m_Weight: 0
+  - m_Path: Armature/Root/Ik_R/Pole_R
+    m_Weight: 0
+  - m_Path: Armature/Root/Ik_R/Pole_R/Pole_R_end
+    m_Weight: 0
+  - m_Path: Armature/Root/Torso
+    m_Weight: 0
+  - m_Path: Armature/Root/Torso/Body
+    m_Weight: 0
+  - m_Path: Armature/Root/Torso/Body/Body.001
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_L/Arm_L.001
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_L/Arm_L.001/ArmRobe_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_L/Arm_L.001/ArmRobe_L/ArmRobe_L_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_L/Arm_L.001/Hand_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_L/Arm_L.001/Hand_L/HandParent_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_L/Arm_L.001/Hand_L/HandParent_L/HandParent_L_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_R/Arm_R.001
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_R/Arm_R.001/Hand_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_R/Arm_R.001/Hand_R/HandParent_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_R/Arm_R.001/Hand_R/HandParent_R/HandParent_R_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_R/ArmRobe_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Arm_R/ArmRobe_R/ArmRobe_R_end
+    m_Weight: 0
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head/Eye_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head/Eye_L/Eye_L_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head/Eye_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head/Eye_R/Eye_R_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head/Glasses
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head/Glasses/Glasses_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head/Hat
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head/Hat/Hat.001
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head/Hat/Hat.001/Hat.002
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Head/Hat/Hat.001/Hat.002/Hat.002_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Body.001/Robe
+    m_Weight: 0
+  - m_Path: Armature/Root/Torso/Body/Body.001/Robe/Robe_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Robe.001
+    m_Weight: 0
+  - m_Path: Armature/Root/Torso/Body/Robe.001/Robe_B
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Robe.001/Robe_B/Robe_B_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Robe.001/Robe_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Robe.001/Robe_L/Robe_L_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Robe.001/Robe_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Body/Robe.001/Robe_R/Robe_R_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Leg_L.001
+    m_Weight: 0
+  - m_Path: Armature/Root/Torso/Leg_L.001/Leg_L
+    m_Weight: 0
+  - m_Path: Armature/Root/Torso/Leg_L.001/Leg_L/Leg_L_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Torso/Leg_R.001
+    m_Weight: 0
+  - m_Path: Armature/Root/Torso/Leg_R.001/Leg_R
+    m_Weight: 0
+  - m_Path: Armature/Root/Torso/Leg_R.001/Leg_R/Leg_R_end
+    m_Weight: 0
+  - m_Path: Glasses
+    m_Weight: 0
+  - m_Path: Hands
+    m_Weight: 0
+  - m_Path: Hat
+    m_Weight: 0
+  - m_Path: Head
+    m_Weight: 0
+  - m_Path: Legs
+    m_Weight: 0
+  - m_Path: Robe
+    m_Weight: 0
+  - m_Path: Tunic
+    m_Weight: 0
