@@ -9,10 +9,10 @@ public class Enemy3 : MonoBehaviour, IHitable
     public GameObject target;
 
     [SerializeField] float knockbackForce = 10.0f;
-    [SerializeField] float activateDistance = 10.0f;
+    [SerializeField] float activateDistance = 5.0f;
 
     bool following = true;
-    bool activate = false;
+    bool activated = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,10 +25,10 @@ public class Enemy3 : MonoBehaviour, IHitable
     void Update()
     {
         if (Vector3.Distance(target.transform.position, transform.position) < activateDistance) {
-
+            activated = true;
         }
 
-        if (following)
+        if (following && activated)
         {
             rb.AddForce(target.transform.position - gameObject.transform.position);
         }

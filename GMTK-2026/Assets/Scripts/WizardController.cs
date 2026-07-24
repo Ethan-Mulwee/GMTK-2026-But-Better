@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -89,10 +90,15 @@ public class WizardController : MonoBehaviour
         Attack();
         // Jump();
         Dash();
-        Spell3();
-        Spell2();
-        Spell1();
+        // Spell3();
+        // Spell2();
+        // Spell1();
         AnimParameters();
+
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            spell = SelectedSpell.Three;
+        }
+        spell3Timer -= Time.deltaTime;
     }
 
     void LateUpdate() {
@@ -117,43 +123,26 @@ public class WizardController : MonoBehaviour
     float dashCooldownTimer = 0.0f;
 
     void Dash() {
-        // if (dashCooldownTimer <= 0)
-        // {
-        //     if (Input.GetKeyDown(KeyCode.LeftShift))
-        //     {
-        //         dashing = true;
-        //         // dashVector = gameObject.GetComponent<Rigidbody>().linearVelocity.normalized;
-        //         // dashVector = new Vector3(dashVector.x, 0, dashVector.z);
-        //         dashVector = movementInput;
-        //         Ray ray = new Ray(transform.position, movementInput);
-        //         RaycastHit hit;
-        //         // if (Physics.Raycast(ray, out hit, 1.0f, ~(1 << 7))) {
-        //         //     Debug.Log(hit.collider.gameObject.name);
-        //         //     transform.position = hit.point;
-        //         // } else {
-        //         //     transform.position = transform.position + movementInput.normalized * 1.0f;
-        //         // }
-        //         dashTimer = 0.3f;
-        //         rb.AddForce(dashVector*10.0f, ForceMode.Impulse);
-        //         dashCooldownTimer = dashCooldown;
-        //     }
-        // } else
-        // {
-        //     dashCooldownTimer -= Time.deltaTime;
 
-        // }
-
-        // if (dashing) {
-        //     dashTimer -= Time.deltaTime;
-        //     if (dashTimer <= 0.0f) {
-        //         rb.AddForce(-dashVector*10.0f, ForceMode.Impulse);
-        //         dashing = false;
-        //     }
-        // }
     }
 
     void Attack() {
         if (Input.GetMouseButtonDown(0) && aiming) {
+            switch (spell) {
+                case SelectedSpell.Melee: {
+                    animator.SetTrigger("Melee");
+                    meleeScript.Attack();
+                    break;
+                }
+
+                case SelectedSpell.Three: {
+                    animator.SetTrigger("Cast1");
+                    Spell3();
+                    break;
+                }
+            }
+        }
+        if (Input.GetMouseButtonDown(2)) {
             animator.SetTrigger("Melee");
             meleeScript.Attack();
         }
@@ -162,19 +151,23 @@ public class WizardController : MonoBehaviour
     [Header ("Spell 3")]
     [SerializeField] float spell3Cooldown;
     [SerializeField] float spell3Timer = 0.0f;
+    [SerializeField] float spell3InitialDelay = 0.5f;
+    [SerializeField] float spell3SecondDelay = 0.2f;
 
     void Spell3() {
-        if (spell3Timer <= 0.0f)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
-            {
-                Instantiate(spell3, gameObject.transform.position, gameObject.transform.rotation);
+        if (spell3Timer <= 0.0f) {
                 spell3Timer = spell3Cooldown;
-            }
-        } else
-        {
-            spell3Timer -= Time.deltaTime;
+                StartCoroutine(Spell3Routine());
         }
+        else {
+        }
+    }
+
+    IEnumerator Spell3Routine() {
+        yield return new WaitForSeconds(spell3InitialDelay);
+        Instantiate(spell3, gameObject.transform.position, gameObject.transform.rotation);
+        yield return new WaitForSeconds(spell3SecondDelay);
+        Instantiate(spell3, gameObject.transform.position, gameObject.transform.rotation);
     }
 
     [Header("Spell 2")]
