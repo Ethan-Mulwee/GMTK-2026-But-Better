@@ -1,11 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Enemy3 : MonoBehaviour, IHitable
 {
 
     Rigidbody rb;
-    TextMeshPro textMesh;
+    [SerializeField] TextMeshPro textMesh;
     public GameObject target;
 
     [SerializeField] float knockbackForce = 10.0f;
@@ -18,19 +19,21 @@ public class Enemy3 : MonoBehaviour, IHitable
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        textMesh = gameObject.GetComponent<TextMeshPro>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(target.transform.position, transform.position) < activateDistance) {
+        if (Vector3.Distance(target.transform.position, transform.position) < activateDistance && !activated) {
             activated = true;
+            textMesh.color = Color.red;
         }
 
         if (following && activated)
         {
+            Vector3 vec = target.transform.position - gameObject.transform.position;
             rb.AddForce(target.transform.position - gameObject.transform.position);
+            textMesh.transform.Rotate(0.0f, 0.0f, 1.0f);
         }
     }
 

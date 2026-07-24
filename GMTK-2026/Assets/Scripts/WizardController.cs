@@ -80,6 +80,9 @@ public class WizardController : MonoBehaviour
     // State
     // bool grounded = true;
     bool dashing = true;
+    public bool spell3Enabled = false;
+    public bool spell2Enabled = false;
+    public bool spell1Enabled = false;
 
     void OnEnable() {
         rb = GetComponent<Rigidbody>();
@@ -95,7 +98,7 @@ public class WizardController : MonoBehaviour
         // Spell1();
         AnimParameters();
 
-        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+        if (Input.GetKeyDown(KeyCode.Alpha3) && spell3Enabled) {
             spell = SelectedSpell.Three;
         }
         spell3Timer -= Time.deltaTime;

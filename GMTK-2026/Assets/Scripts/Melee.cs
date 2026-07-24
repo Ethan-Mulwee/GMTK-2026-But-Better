@@ -18,6 +18,16 @@ public class Melee : MonoBehaviour
         
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        activeObject = other.gameObject;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        activeObject = null;
+    }
+
     void OnTriggerStay(Collider other)
     {
         activeObject = other.gameObject;

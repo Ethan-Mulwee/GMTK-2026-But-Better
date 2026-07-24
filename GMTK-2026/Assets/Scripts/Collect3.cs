@@ -1,22 +1,25 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class UIScript : MonoBehaviour
+public class Collect3 : MonoBehaviour
 {
+
     public WizardController wizard;
-    public GameObject threeIcon;
-    public GameObject twoIcon;
-    public GameObject oneIcon;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        threeIcon.SetActive(false);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (wizard.spell3Enabled) {
-            threeIcon.SetActive(true);
-        }
+        
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        wizard.spell3Enabled = true;
+        Destroy(gameObject);
     }
 }

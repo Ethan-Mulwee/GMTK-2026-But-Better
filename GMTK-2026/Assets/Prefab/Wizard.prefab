@@ -58,9 +58,12 @@ MonoBehaviour:
   rayLength: 0.6
   orientationSpringStrength: 40
   orientationSpringDamping: 2
-  maxSpeed: 3
-  acceleration: 10
-  maxAcceleration: 10
+  walkMaxSpeed: 3
+  walkAcceleration: 10
+  walkMaxAcceleration: 10
+  runMaxSpeed: 6
+  runAcceleration: 2
+  runMaxAcceleration: 10
   wizardModel: {fileID: 2643759329949007098}
   an: {fileID: 3845129473651100275}
   wizardHat: {fileID: 6069547161069122386}
@@ -75,6 +78,8 @@ MonoBehaviour:
   attacking: 0
   spell3Cooldown: 0.5
   spell3Timer: 0
+  spell3InitialDelay: 0.5
+  spell3SecondDelay: 0.2
   spell2Cooldown: 3
   spell2Timer: 0
   spell1Cooldown: 6
@@ -291,8 +296,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.47344112}
-  m_Center: {x: 0, y: 0, z: 0.54166484}
+  m_Size: {x: 1, y: 1, z: 0.60736585}
+  m_Center: {x: 0, y: 0, z: 0.6086272}
 --- !u!114 &6961631117339145439
 MonoBehaviour:
   m_ObjectHideFlags: 0
