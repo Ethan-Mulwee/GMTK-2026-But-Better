@@ -12228,6 +12228,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gamemode
   goblinPF: {fileID: 5391829214864147986, guid: 86fbdfa7c138f9c4d9902abac8493b56,
     type: 3}
+  skeletonPF: {fileID: 3273322164962798382, guid: a27cd1e1865ab4f4f86922f40d128dd4,
+    type: 3}
 --- !u!4 &1703752593
 Transform:
   m_ObjectHideFlags: 0

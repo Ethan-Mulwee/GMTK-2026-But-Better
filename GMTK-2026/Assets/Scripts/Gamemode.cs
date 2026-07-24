@@ -28,6 +28,7 @@ public class Gamemode : MonoBehaviour
 
     [Header("Enemies")]
     [SerializeField] GameObject goblinPF;
+    [SerializeField] GameObject skeletonPF;
 
     private void Awake()
     {
@@ -51,7 +52,7 @@ public class Gamemode : MonoBehaviour
         rooms[6].enemies = new enemy[0];
 
         rooms[7].enemies = new enemy[3];
-        rooms[7].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        rooms[7].enemies[0] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
         rooms[7].enemies[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
         rooms[7].enemies[2] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
