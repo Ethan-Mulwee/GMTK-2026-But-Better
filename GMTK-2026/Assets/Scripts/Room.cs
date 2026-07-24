@@ -3,13 +3,12 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     bool cleared = false;
-    [SerializeField] int roomID;
-    static Gamemode.room layout;
+    [SerializeField] private int roomID;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        layout = Gamemode.rooms[roomID];
+        
     }
 
     // Update is called once per frame
@@ -22,13 +21,13 @@ public class Room : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && !cleared)
         {
-            if (layout.enemies.Length > 0)
+            Debug.Log("ID: " + roomID);
+            Debug.Log("Gamemode.rooms[roomID].enemies.Length: " + Gamemode.rooms[roomID].enemies.Length);
+
+            for (int i = 0; i < Gamemode.rooms[roomID].enemies.Length; i++)
             {
-                for (int i = 0; i < layout.enemies.Length; i++)
-                {
-                    Instantiate(layout.enemies[i].go, layout.enemies[i].pos, Quaternion.Euler(layout.enemies[i].rot));
-                    cleared = true;
-                }
+                Instantiate(Gamemode.rooms[roomID].enemies[i].go, Gamemode.rooms[roomID].enemies[i].pos, Quaternion.Euler(Gamemode.rooms[roomID].enemies[i].rot));
+                cleared = true;
             }
         }
     }

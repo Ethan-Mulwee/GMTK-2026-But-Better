@@ -29,28 +29,51 @@ public class Gamemode : MonoBehaviour
     [Header("Enemies")]
     [SerializeField] GameObject goblinPF;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void Awake()
     {
         rooms[0].enemies = new enemy[0];
 
         rooms[1].enemies = new enemy[1];
-        rooms[1].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        rooms[1].enemies[0] = newEnemy(goblinPF, new Vector3(16, 1, -3), new Vector3(0, 0, 0));
 
         rooms[2].enemies = new enemy[2];
         rooms[2].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
         rooms[2].enemies[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
-        // TODO: Add the enemies for all the rooms
+        rooms[3].enemies = new enemy[2];
+        rooms[3].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        rooms[3].enemies[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+
+        rooms[4].enemies = new enemy[0];
+
+        rooms[5].enemies = new enemy[0];
+
+        rooms[6].enemies = new enemy[0];
+
+        rooms[7].enemies = new enemy[3];
+        rooms[7].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        rooms[7].enemies[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        rooms[7].enemies[2] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+
+        rooms[8].enemies = new enemy[0];
+
+        rooms[9].enemies = new enemy[0];
+
+        rooms[10].enemies = new enemy[0];
+
+        rooms[11].enemies = new enemy[0];
+
+        rooms[12].enemies = new enemy[0];
+
+        rooms[13].enemies = new enemy[0];
+
+        rooms[14].enemies = new enemy[0];
+
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            Debug.Log(rooms[i].enemies.Length);
+        }
+
+        Debug.Log("init complete");
     }
 }

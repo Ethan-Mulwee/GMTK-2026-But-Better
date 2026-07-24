@@ -9,7 +9,6 @@ public class DoorTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        Debug.Log("Player entered the door trigger");
         an.Play("Door-Open");
     }
 
@@ -17,7 +16,6 @@ public class DoorTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        Debug.Log("Player left the door trigger");
         an.Play("Door-Close");
     }
 }
