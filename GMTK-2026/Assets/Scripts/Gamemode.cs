@@ -69,12 +69,5 @@ public class Gamemode : MonoBehaviour
         rooms[13].enemies = new enemy[0];
 
         rooms[14].enemies = new enemy[0];
-
-        for (int i = 0; i < rooms.Length; i++)
-        {
-            Debug.Log(rooms[i].enemies.Length);
-        }
-
-        Debug.Log("init complete");
     }
 }

@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Spell_2
   speed: 2.5
   damage: 25
+  explosionForce: 10
   explosionTime: 1
 --- !u!54 &646185244133967372
 Rigidbody:
@@ -259,7 +260,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 128

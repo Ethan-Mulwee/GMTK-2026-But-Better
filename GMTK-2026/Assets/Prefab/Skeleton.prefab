@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5892700151389336386}
   - component: {fileID: 1085096194908005492}
   - component: {fileID: 1561741838921180089}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 4117046952527734315}
   - component: {fileID: 7040136265140265192}
   - component: {fileID: 1199373055367987134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.72766, y: 0, z: -2.33685}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 460019449279377014}
@@ -156,7 +156,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3273322164962798382}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 0.75
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

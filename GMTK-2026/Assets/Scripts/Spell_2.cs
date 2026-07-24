@@ -6,6 +6,7 @@ public class Spell_2 : MonoBehaviour
 
     [SerializeField] float speed;
     [SerializeField] float damage;
+    [SerializeField] float explosionForce;
     bool firing = true;
     [SerializeField] float explosionTime;
 
@@ -47,5 +48,16 @@ public class Spell_2 : MonoBehaviour
         //Create fireball explosion
         firing = false;
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 5.0f, 1 << 8);
+        foreach (Collider c in hitColliders)
+        {
+            try
+            {
+                c.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, gameObject.transform.position, 5.0f);
+
+                Debug.Log(c.gameObject);
+            }
+            catch { }
+        }
     }
 }

@@ -27,18 +27,15 @@ public class Explosion : MonoBehaviour
 
         util.checkCollision(collision);
 
-        float mass = gameObject.GetComponent<Rigidbody>().mass;
-        Vector3 direction = gameObject.transform.position - collision.gameObject.transform.position;
-        collision.gameObject.GetComponent<Rigidbody>().linearVelocity = mass * direction * 100;
+        // float mass = gameObject.GetComponent<Rigidbody>().mass;
+        // Vector3 direction = gameObject.transform.position - collision.gameObject.transform.position;
+        // collision.gameObject.GetComponent<Rigidbody>().linearVelocity = mass * direction * 100;
 
-        Debug.Log(collision.gameObject);
+        Debug.Log("Enter: " + collision.gameObject);
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        try
-        {
-            
-        } catch { }
+        Debug.Log("Stay: " + collision.gameObject);
     }
 }
