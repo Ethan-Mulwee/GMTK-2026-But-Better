@@ -26,7 +26,7 @@ public class Spell_3 : MonoBehaviour
             collision.gameObject.GetComponent<EnemyScript>().health -= damage;
         } catch { }
 
-        util.checkCollision(collision);
+        util.checkCollision(collision.gameObject);
 
         Destroy(gameObject);
     }

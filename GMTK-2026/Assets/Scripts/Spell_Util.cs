@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Spell_Util
 {
-    public void checkCollision(Collision collision)
+    public void checkCollision(GameObject collision)
     {
-        if (collision.gameObject.tag == "Button")
+        if (collision.tag == "Button")
         {
-            collision.gameObject.GetComponent<Button>().pressButton();
+            collision.GetComponent<Button>().pressButton();
         }
     }
 }

@@ -41,14 +41,14 @@ public class Spell_2 : MonoBehaviour
         }
         catch { }
 
-        util.checkCollision(collision);
+        util.checkCollision(collision.gameObject);
 
         gameObject.GetComponent<Collider>().enabled = false;
 
         //Create fireball explosion
         firing = false;
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 5.0f, 1 << 8);
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 5.0f, ~(1 << 7));
         foreach (Collider c in hitColliders)
         {
             try

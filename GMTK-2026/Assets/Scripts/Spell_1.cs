@@ -33,6 +33,6 @@ public class Spell_1 : MonoBehaviour
         }
         catch { }
 
-        util.checkCollision(collision);
+        util.checkCollision(collision.gameObject);
     }
 }

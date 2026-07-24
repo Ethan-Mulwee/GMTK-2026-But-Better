@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2055411522350633859}
   - component: {fileID: 8835720180686766727}
   - component: {fileID: 9147444331076938801}
-  - component: {fileID: 7518745666876114222}
   m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
@@ -29,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.5, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2523930457253265118}
@@ -91,29 +90,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7518745666876114222
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2687783151719396432}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5391829214864147986
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +101,7 @@ GameObject:
   - component: {fileID: 2523930457253265118}
   - component: {fileID: 5984599911630092187}
   - component: {fileID: 1573242816409387558}
+  - component: {fileID: 9150180665687565540}
   m_Layer: 8
   m_Name: Goblin
   m_TagString: Untagged
@@ -142,7 +119,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.5, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2055411522350633859}
@@ -156,7 +133,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5391829214864147986}
   serializedVersion: 5
-  m_Mass: 0.25
+  m_Mass: 0.2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -187,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7899ce0507fdcad9d0aef0f25fb4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScript
-  maxHealth: 25
-  health: 25
+  maxHealth: 100
+  health: 100
   restingHeight: 0.4
   springStrength: 1
   springDamping: 0.1
@@ -199,3 +176,26 @@ MonoBehaviour:
   acceleration: 1
   maxAcceleration: 10
   target: {fileID: 0}
+--- !u!136 &9150180665687565540
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5391829214864147986}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.009354889, z: 0.010478914}

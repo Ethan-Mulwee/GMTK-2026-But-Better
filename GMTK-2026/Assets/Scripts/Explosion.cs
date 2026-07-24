@@ -18,20 +18,20 @@ public class Explosion : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         try
         {
-            collision.gameObject.GetComponent<EnemyScript>().health -= damage;
+            other.gameObject.GetComponent<EnemyScript>().health -= damage;
         } catch { }
 
-        util.checkCollision(collision);
+        util.checkCollision(other.gameObject);
 
         // float mass = gameObject.GetComponent<Rigidbody>().mass;
         // Vector3 direction = gameObject.transform.position - collision.gameObject.transform.position;
         // collision.gameObject.GetComponent<Rigidbody>().linearVelocity = mass * direction * 100;
 
-        Debug.Log("Enter: " + collision.gameObject);
+        Debug.Log("Enter: " + other.gameObject);
     }
 
     private void OnCollisionStay(Collision collision)
