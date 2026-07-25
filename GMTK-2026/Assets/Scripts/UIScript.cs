@@ -1,22 +1,32 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
     public WizardController wizard;
-    public GameObject threeIcon;
-    public GameObject twoIcon;
-    public GameObject oneIcon;
+    public Image threeIcon;
+    public Image twoIcon;
+    public Image oneIcon;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        threeIcon.SetActive(false);
+        threeIcon.gameObject.SetActive(false);
+        twoIcon.gameObject.SetActive(false);
+        oneIcon.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (wizard.spell3Enabled) {
-            threeIcon.SetActive(true);
+            threeIcon.gameObject.SetActive(true);
+        }
+        threeIcon.color = new Color(27, 39, 54);
+        switch (wizard.spell) {
+            case SelectedSpell.Three: {
+                threeIcon.color = Color.white;
+                break;
+            }
         }
     }
 }

@@ -77,6 +77,20 @@ public class WizardController : MonoBehaviour
     public bool aiming = false;
     public bool attacking = false;
 
+    public void SetSpell(int spellID) {
+        switch(spellID) {
+            case 1: 
+                spell = SelectedSpell.One;
+                break;
+            case 2: 
+                spell = SelectedSpell.Two;
+                break;
+            case 3: 
+                spell = SelectedSpell.Three;
+                break;
+        }
+    }
+
     // State
     // bool grounded = true;
     bool dashing = true;
