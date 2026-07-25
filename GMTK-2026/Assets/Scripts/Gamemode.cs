@@ -35,8 +35,9 @@ public class Gamemode : MonoBehaviour
     [Header("Enemies")]
     [SerializeField] public GameObject goblinPF;
     [SerializeField] public GameObject skeletonPF;
+    [SerializeField] public GameObject bossPF;
 
-    public static GameObject gm;
+    [HideInInspector] public static GameObject gm;
 
     private void Awake()
     {
@@ -68,15 +69,22 @@ public class Gamemode : MonoBehaviour
 
         rooms[9].enemies = new enemy[0];
 
-        rooms[10].enemies = new enemy[0];
+        rooms[10].enemies = new enemy[4];
+        rooms[10].enemies[0] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        rooms[10].enemies[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        rooms[10].enemies[2] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        rooms[10].enemies[3] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
         rooms[11].enemies = new enemy[0];
 
         rooms[12].enemies = new enemy[0];
 
         rooms[13].enemies = new enemy[0];
+        rooms[13].enemies[0] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        rooms[13].enemies[1] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
         rooms[14].enemies = new enemy[0];
+        rooms[14].enemies[0] = newEnemy(bossPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
     }
 
     private void Start()

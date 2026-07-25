@@ -12027,6 +12027,12 @@ PrefabInstance:
       objectReference: {fileID: 1936112429}
     - target: {fileID: 2478762508843925679, guid: f0594ea630117084da377860dae015d7,
         type: 3}
+      propertyPath: openingDoor
+      value: 
+      objectReference: {fileID: 8025563082704038659, guid: 9a20002f4a2b6cf8e9c4afa91a84d8de,
+        type: 3}
+    - target: {fileID: 2478762508843925679, guid: f0594ea630117084da377860dae015d7,
+        type: 3}
       propertyPath: buttonsNeeded
       value: 0
       objectReference: {fileID: 0}
@@ -12038,7 +12044,7 @@ PrefabInstance:
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000009771209
+      value: 0.0000009536743
       objectReference: {fileID: 0}
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
@@ -12048,7 +12054,7 @@ PrefabInstance:
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
@@ -12058,7 +12064,7 @@ PrefabInstance:
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
@@ -12073,7 +12079,7 @@ PrefabInstance:
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
@@ -12230,6 +12236,7 @@ MonoBehaviour:
     type: 3}
   skeletonPF: {fileID: 3273322164962798382, guid: a27cd1e1865ab4f4f86922f40d128dd4,
     type: 3}
+  bossPF: {fileID: 2920658710033006105, guid: 6404d96eeb30aa848a2b3bd04a49792e, type: 3}
 --- !u!4 &1703752593
 Transform:
   m_ObjectHideFlags: 0
@@ -13887,7 +13894,6 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   dashCooldown: 1.5
-  keyCount: 0
   currentRoom: {fileID: 0}
   restingHeight: 0.53
   springStrength: 300
@@ -13905,6 +13911,7 @@ MonoBehaviour:
   spell3: {fileID: 2108630078563473599, guid: e6aa80cbc56028faab1fcc1414124b19, type: 3}
   spell2: {fileID: 1730977595967081316, guid: 0335270f17a2b9b4698c032bdcef112f, type: 3}
   spell1: {fileID: 6703675625407457394, guid: d0cddbe4163f2d44a8fdb7e9aabf92b9, type: 3}
+  keyCount: 0
   spell3Cooldown: 0.5
   spell3Timer: 0
   spell2Cooldown: 3
@@ -14705,6 +14712,12 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1936112429}
+    - target: {fileID: 2478762508843925679, guid: f0594ea630117084da377860dae015d7,
+        type: 3}
+      propertyPath: openingDoor
+      value: 
+      objectReference: {fileID: 8025563082704038659, guid: 9a20002f4a2b6cf8e9c4afa91a84d8de,
+        type: 3}
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14723,7 +14736,7 @@ PrefabInstance:
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
@@ -14733,7 +14746,7 @@ PrefabInstance:
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
@@ -14748,7 +14761,7 @@ PrefabInstance:
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2969850233939090093, guid: f0594ea630117084da377860dae015d7,
         type: 3}

@@ -4,7 +4,7 @@ public class Room : MonoBehaviour
 {
     [SerializeField] private int roomID;
 
-    public int enemyCount;
+    [HideInInspector] public int enemyCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,13 +24,10 @@ public class Room : MonoBehaviour
         {
             // TODO: lock all doors leaving room
 
-            //if (enemyCount > 0)
-            //{
-                for (int i = 0; i < enemyCount; i++)
-                {
-                    Instantiate(Gamemode.rooms[roomID].enemies[i].go, Gamemode.rooms[roomID].enemies[i].pos, Quaternion.Euler(Gamemode.rooms[roomID].enemies[i].rot));
-                }
-            //}
+            for (int i = 0; i < enemyCount; i++)
+            {
+                Instantiate(Gamemode.rooms[roomID].enemies[i].go, Gamemode.rooms[roomID].enemies[i].pos, Quaternion.Euler(Gamemode.rooms[roomID].enemies[i].rot));
+            }
         }
     }
 

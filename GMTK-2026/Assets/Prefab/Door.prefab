@@ -48,8 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   buttonsPressed: 0
   buttonsNeeded: 1
-  interactable: 0
   player: {fileID: 0}
+  openingDoor: {fileID: 8025563082704038659, guid: 9a20002f4a2b6cf8e9c4afa91a84d8de,
+    type: 3}
 --- !u!65 &7203353099912416009
 BoxCollider:
   m_ObjectHideFlags: 0

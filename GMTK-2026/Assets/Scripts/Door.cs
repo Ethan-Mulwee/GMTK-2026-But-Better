@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public int buttonsPressed = 0;
+    [HideInInspector] public int buttonsPressed = 0;
     [SerializeField] int buttonsNeeded = 1;
-    [SerializeField] bool interactable = false;
+    bool interactable = false;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject openingDoor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,13 +31,20 @@ public class Door : MonoBehaviour
 
             if (buttonsPressed >= buttonsNeeded)
             {
-                Destroy(gameObject);
+                replaceDoor();
             }
         } else if (player.GetComponent<WizardController>().keyCount > 0)
         {
             player.GetComponent<WizardController>().keyCount--;
-            Destroy(gameObject);
+            replaceDoor();
         }
+    }
+
+    void replaceDoor()
+    {
+        Vector3 spawnPos = gameObject.transform.position + new Vector3(0, 0.7f, 0);
+        Instantiate(openingDoor, spawnPos, gameObject.transform.rotation);
+        Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other)

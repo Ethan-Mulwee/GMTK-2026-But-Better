@@ -8,7 +8,7 @@ public class WizardController : MonoBehaviour
     [SerializeField] float maxHealth;
     [SerializeField] public float health;
     [SerializeField] float dashCooldown;
-    public int keyCount = 0;
+    
     public GameObject currentRoom;
     
     [Header("Position Spring")]
@@ -66,6 +66,7 @@ public class WizardController : MonoBehaviour
     // State
     // bool grounded = true;
     bool dashing = true;
+    [HideInInspector] public int keyCount = 0;
 
     void OnEnable() {
         rb = GetComponent<Rigidbody>();
