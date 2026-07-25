@@ -21,7 +21,7 @@ public class UIScript : MonoBehaviour
         if (wizard.spell3Enabled) {
             threeIcon.gameObject.SetActive(true);
         }
-        threeIcon.color = new Color(27, 39, 54);
+        threeIcon.color = new Color(27.0f/255.0f, 39.0f/255.0f, 54.0f/255.0f);
         switch (wizard.spell) {
             case SelectedSpell.Three: {
                 threeIcon.color = Color.white;

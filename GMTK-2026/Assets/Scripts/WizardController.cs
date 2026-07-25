@@ -257,7 +257,7 @@ public class WizardController : MonoBehaviour
 
         // Mouse input
         RaycastHit hit;
-        Physics.Raycast(RayFromCursor(), out hit, Mathf.Infinity, 1 << 7);
+        Physics.Raycast(RayFromCursor(), out hit, Mathf.Infinity, 1 << 9);
         mousePos = hit.point;
         Vector3 lookDir = (mousePos - transform.position).normalized;
         lookDir.y = 0;
@@ -295,7 +295,7 @@ public class WizardController : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(transform.position, Vector3.down);
 
-        if (Physics.Raycast(ray, out hit, rayLength)) {
+        if (Physics.Raycast(ray, out hit, rayLength, ~(1 << 7))) {
 
 
             Vector3 velocity = rb.linearVelocity;

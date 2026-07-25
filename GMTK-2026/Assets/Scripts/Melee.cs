@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -35,8 +36,15 @@ public class Melee : MonoBehaviour
 
     public void Attack() {
         if (activeObject != null) {
+            // IHitable hitable = activeObject.gameObject.GetComponent<IHitable>();
+            // hitable.Hit();
+            StartCoroutine(AttackRoutine());
+        }
+    }
+
+    IEnumerator AttackRoutine() {
+        yield return new WaitForSeconds(0.15f);
             IHitable hitable = activeObject.gameObject.GetComponent<IHitable>();
             hitable.Hit();
-        }
     }
 }

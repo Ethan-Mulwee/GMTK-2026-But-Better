@@ -7,6 +7,7 @@ public class Room : MonoBehaviour
     [SerializeField] int roomID;
     [SerializeField] List<GameObject> enemyList;
     [SerializeField] GameObject reward;
+    public DoorTrigger door;
     static Gamemode.room layout;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,10 +26,12 @@ public class Room : MonoBehaviour
                 enemyList.Remove(enemyList[i]);
         }
         if (enemyList.Count == 0 && !cleared) {
-            Debug.Log("room cleared");
+            // Debug.Log("room cleared");
             if (reward != null)
                 reward.SetActive(true);
             cleared = true;
+            if (door)
+                door.unlock();
         }
     }
 
