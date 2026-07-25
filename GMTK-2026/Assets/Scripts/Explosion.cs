@@ -26,16 +26,5 @@ public class Explosion : MonoBehaviour
         } catch { }
 
         util.checkCollision(other.gameObject);
-
-        // float mass = gameObject.GetComponent<Rigidbody>().mass;
-        // Vector3 direction = gameObject.transform.position - collision.gameObject.transform.position;
-        // collision.gameObject.GetComponent<Rigidbody>().linearVelocity = mass * direction * 100;
-
-        Debug.Log("Enter: " + other.gameObject);
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        Debug.Log("Stay: " + collision.gameObject);
     }
 }
