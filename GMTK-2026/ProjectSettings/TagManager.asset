@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Button
   - Camera Trigger
+  - Door
   layers:
   - Default
   - TransparentFX

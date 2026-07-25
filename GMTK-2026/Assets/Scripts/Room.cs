@@ -3,8 +3,8 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField] private int roomID;
-
     [HideInInspector] public int enemyCount;
+    public static bool active;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,15 +20,18 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !active)
         {
-            // TODO: lock all doors leaving room
+            active = true;
+            try { WizardController.lastDoor.closeDoor(); } catch { }
 
             for (int i = 0; i < enemyCount; i++)
             {
                 Instantiate(Gamemode.roomList[roomID].enemyList[i].go, Gamemode.roomList[roomID].enemyList[i].pos, Quaternion.Euler(Gamemode.roomList[roomID].enemyList[i].rot));
             }
         }
+
+        checkEnemyCount();
     }
 
     public int getID()
@@ -36,11 +39,16 @@ public class Room : MonoBehaviour
         return roomID;
     }
 
+    public bool getStatus()
+    {
+        return active;
+    }
+
     public void checkEnemyCount()
     {
         if (enemyCount <= 0)
         {
-            // TODO: open all doors leaving room
+            active = false;
         }
     }
 }

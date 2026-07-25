@@ -10,6 +10,7 @@ public class WizardController : MonoBehaviour
     [SerializeField] float dashCooldown;
     
     public GameObject currentRoom;
+    public static DoorTrigger lastDoor;
     
     [Header("Position Spring")]
     [SerializeField] float restingHeight = 0.4f;
@@ -327,6 +328,19 @@ public class WizardController : MonoBehaviour
         {
             cam_Pivot.GetComponent<CameraController>().target = other.gameObject;
             currentRoom = other.gameObject;
+        }
+        if (other.gameObject.tag == "Door" && !currentRoom.GetComponent<Room>().getStatus())
+        {
+            lastDoor = other.gameObject.GetComponent<DoorTrigger>();
+            lastDoor.openDoor();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Door" && !currentRoom.GetComponent<Room>().getStatus())
+        {
+            lastDoor.closeDoor();
         }
     }
 

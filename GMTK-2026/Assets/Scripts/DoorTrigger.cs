@@ -4,18 +4,39 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] Animator an;
+    public bool isOpen = false;
     
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Player")) return;
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (!other.CompareTag("Player")) return;
+    // 
+    //     an.Play("Door-Open");
+    //     isOpen = true;
+    // }
 
-        an.Play("Door-Open");
+    public void openDoor()
+    {
+        if (!isOpen)
+        {
+            an.Play("Door-Open");
+            isOpen = true;
+        }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.CompareTag("Player")) return;
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     if (!other.CompareTag("Player")) return;
+    // 
+    //     an.Play("Door-Close");
+    //     isOpen = false;
+    // }
 
-        an.Play("Door-Close");
+    public void closeDoor()
+    {
+        if (isOpen)
+        {
+            an.Play("Door-Close");
+            isOpen = false;
+        }
     }
 }

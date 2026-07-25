@@ -44,7 +44,7 @@ public class Gamemode : MonoBehaviour
         roomList[0].enemyList = new enemy[0];
 
         roomList[1].enemyList = new enemy[1];
-        roomList[1].enemyList[0] = newEnemy(goblinPF, new Vector3(16, 1, -3), new Vector3(0, 0, 0));
+        roomList[1].enemyList[0] = newEnemy(goblinPF, new Vector3(16, 1, 0), new Vector3(0, 0, 0));
 
         roomList[2].enemyList = new enemy[2];
         roomList[2].enemyList[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
