@@ -9,7 +9,7 @@ public class Room : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        enemyCount = Gamemode.rooms[roomID].enemies.Length;
+        enemyCount = Gamemode.roomList[roomID].enemyList.Length;
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class Room : MonoBehaviour
 
             for (int i = 0; i < enemyCount; i++)
             {
-                Instantiate(Gamemode.rooms[roomID].enemies[i].go, Gamemode.rooms[roomID].enemies[i].pos, Quaternion.Euler(Gamemode.rooms[roomID].enemies[i].rot));
+                Instantiate(Gamemode.roomList[roomID].enemyList[i].go, Gamemode.roomList[roomID].enemyList[i].pos, Quaternion.Euler(Gamemode.roomList[roomID].enemyList[i].rot));
             }
         }
     }

@@ -27,10 +27,10 @@ public class Gamemode : MonoBehaviour
     
     public struct room
     {
-        public enemy[] enemies;
+        public enemy[] enemyList;
     }
 
-    public static room[] rooms = new room[15];
+    public static room[] roomList = new room[15];
 
     [Header("Enemies")]
     [SerializeField] public GameObject goblinPF;
@@ -41,50 +41,50 @@ public class Gamemode : MonoBehaviour
 
     private void Awake()
     {
-        rooms[0].enemies = new enemy[0];
+        roomList[0].enemyList = new enemy[0];
 
-        rooms[1].enemies = new enemy[1];
-        rooms[1].enemies[0] = newEnemy(goblinPF, new Vector3(16, 1, -3), new Vector3(0, 0, 0));
+        roomList[1].enemyList = new enemy[1];
+        roomList[1].enemyList[0] = newEnemy(goblinPF, new Vector3(16, 1, -3), new Vector3(0, 0, 0));
 
-        rooms[2].enemies = new enemy[2];
-        rooms[2].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-        rooms[2].enemies[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[2].enemyList = new enemy[2];
+        roomList[2].enemyList[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[2].enemyList[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
-        rooms[3].enemies = new enemy[2];
-        rooms[3].enemies[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-        rooms[3].enemies[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[3].enemyList = new enemy[2];
+        roomList[3].enemyList[0] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[3].enemyList[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
-        rooms[4].enemies = new enemy[0];
+        roomList[4].enemyList = new enemy[0];
 
-        rooms[5].enemies = new enemy[0];
+        roomList[5].enemyList = new enemy[0];
 
-        rooms[6].enemies = new enemy[0];
+        roomList[6].enemyList = new enemy[0];
 
-        rooms[7].enemies = new enemy[3];
-        rooms[7].enemies[0] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-        rooms[7].enemies[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-        rooms[7].enemies[2] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[7].enemyList = new enemy[3];
+        roomList[7].enemyList[0] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[7].enemyList[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[7].enemyList[2] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
-        rooms[8].enemies = new enemy[0];
+        roomList[8].enemyList = new enemy[0];
 
-        rooms[9].enemies = new enemy[0];
+        roomList[9].enemyList = new enemy[0];
 
-        rooms[10].enemies = new enemy[4];
-        rooms[10].enemies[0] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-        rooms[10].enemies[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-        rooms[10].enemies[2] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-        rooms[10].enemies[3] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[10].enemyList = new enemy[4];
+        roomList[10].enemyList[0] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[10].enemyList[1] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[10].enemyList[2] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[10].enemyList[3] = newEnemy(goblinPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
-        rooms[11].enemies = new enemy[0];
+        roomList[11].enemyList = new enemy[0];
 
-        rooms[12].enemies = new enemy[0];
+        roomList[12].enemyList = new enemy[0];
 
-        rooms[13].enemies = new enemy[0];
-        rooms[13].enemies[0] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-        rooms[13].enemies[1] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[13].enemyList = new enemy[2];
+        roomList[13].enemyList[0] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[13].enemyList[1] = newEnemy(skeletonPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
-        rooms[14].enemies = new enemy[0];
-        rooms[14].enemies[0] = newEnemy(bossPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        roomList[14].enemyList = new enemy[1];
+        roomList[14].enemyList[0] = newEnemy(bossPF, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
     }
 
     private void Start()
@@ -105,32 +105,32 @@ public class Gamemode : MonoBehaviour
 
     public static void removeEnemy(int roomID, enemyType type)
     {
-        int newLength = rooms[roomID].enemies.Length - 1;
+        int newLength = roomList[roomID].enemyList.Length - 1;
         enemy[] newEnemyList = new enemy[newLength];
 
         bool wasRemoved = false;
 
         if (newLength >= 0)
         {
-            for (int i = 0; i < rooms[roomID].enemies.Length; i++)
+            for (int i = 0; i < roomList[roomID].enemyList.Length; i++)
             {
                 if (wasRemoved)
                 {
-                    newEnemyList[i] = rooms[roomID].enemies[i];
+                    newEnemyList[i] = roomList[roomID].enemyList[i];
                 }
                 else
                 {
-                    if (checkType(rooms[roomID].enemies[i]) == type)
+                    if (checkType(roomList[roomID].enemyList[i]) == type)
                     {
                     }
                     else
                     {
-                        newEnemyList[i] = rooms[roomID].enemies[i];
+                        newEnemyList[i] = roomList[roomID].enemyList[i];
                     }
                 }
             }
 
-            rooms[roomID].enemies = newEnemyList;
+            roomList[roomID].enemyList = newEnemyList;
         }
     }
 }
