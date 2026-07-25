@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7899ce0507fdcad9d0aef0f25fb4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScript
+  type: 1
   maxHealth: 300
   health: 300
   damage: 30
@@ -212,7 +213,7 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 1
   maxAcceleration: 5
-  target: {fileID: 0}
+  player: {fileID: 0}
 --- !u!136 &5652038882186691388
 CapsuleCollider:
   m_ObjectHideFlags: 0

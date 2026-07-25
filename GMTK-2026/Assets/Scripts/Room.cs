@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    bool cleared = false;
     [SerializeField] private int roomID;
+
+    public int enemyCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        enemyCount = Gamemode.rooms[roomID].enemies.Length;
     }
 
     // Update is called once per frame
@@ -19,16 +20,30 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && !cleared)
+        if (other.gameObject.tag == "Player")
         {
-            Debug.Log("ID: " + roomID);
-            Debug.Log("Gamemode.rooms[roomID].enemies.Length: " + Gamemode.rooms[roomID].enemies.Length);
+            // TODO: lock all doors leaving room
 
-            for (int i = 0; i < Gamemode.rooms[roomID].enemies.Length; i++)
-            {
-                Instantiate(Gamemode.rooms[roomID].enemies[i].go, Gamemode.rooms[roomID].enemies[i].pos, Quaternion.Euler(Gamemode.rooms[roomID].enemies[i].rot));
-                cleared = true;
-            }
+            //if (enemyCount > 0)
+            //{
+                for (int i = 0; i < enemyCount; i++)
+                {
+                    Instantiate(Gamemode.rooms[roomID].enemies[i].go, Gamemode.rooms[roomID].enemies[i].pos, Quaternion.Euler(Gamemode.rooms[roomID].enemies[i].rot));
+                }
+            //}
+        }
+    }
+
+    public int getID()
+    {
+        return roomID;
+    }
+
+    public void checkEnemyCount()
+    {
+        if (enemyCount <= 0)
+        {
+            // TODO: open all doors leaving room
         }
     }
 }

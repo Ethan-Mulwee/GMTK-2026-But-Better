@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyScript : MonoBehaviour
 {
+    [SerializeField] Gamemode.enemyType type;
+
     [Header("Enemy Stats")]
     [SerializeField] float maxHealth;
     [SerializeField] public float health;
@@ -22,7 +24,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] float maxSpeed = 20.0f;
     [SerializeField] float acceleration = 1.0f;
     [SerializeField] float maxAcceleration = 10.0f;
-    [SerializeField] GameObject target;
+    [SerializeField] GameObject player;
 
     Rigidbody rb;
     Quaternion targetOrientation = Quaternion.identity;
@@ -30,7 +32,7 @@ public class EnemyScript : MonoBehaviour
 
     void OnEnable() {
         rb = GetComponent<Rigidbody>();
-        target = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player");
 
         health = maxHealth;
     }
@@ -43,7 +45,7 @@ public class EnemyScript : MonoBehaviour
     }
 
     void MoveForce() {
-        Vector3 direction = (target.transform.position - gameObject.transform.position).normalized;
+        Vector3 direction = (player.transform.position - gameObject.transform.position).normalized;
         Vector3 goalVelocity = direction * maxSpeed;
         velocity = Vector3.MoveTowards(velocity, goalVelocity, acceleration/* *Time.deltaTime */);
 
@@ -121,6 +123,11 @@ public class EnemyScript : MonoBehaviour
     {
         if (health <= 0)
         {
+            // count down the enemy count in the room
+            Room room = player.GetComponent<WizardController>().currentRoom.GetComponent<Room>();
+            room.enemyCount--;
+            Gamemode.removeEnemy(room.getID(), type);
+            room.checkEnemyCount();
             Destroy(gameObject);
         }
     }

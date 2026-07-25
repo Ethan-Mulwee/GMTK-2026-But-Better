@@ -9,6 +9,7 @@ public class WizardController : MonoBehaviour
     [SerializeField] public float health;
     [SerializeField] float dashCooldown;
     public int keyCount = 0;
+    public GameObject currentRoom;
     
     [Header("Position Spring")]
     [SerializeField] float restingHeight = 0.4f;
@@ -324,6 +325,7 @@ public class WizardController : MonoBehaviour
         if (other.gameObject.tag == "Camera Trigger")
         {
             cam_Pivot.GetComponent<CameraController>().target = other.gameObject;
+            currentRoom = other.gameObject;
         }
     }
 

@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class Gamemode : MonoBehaviour
 {
+    public enum enemyType
+    {
+        goblin,
+        skeleton
+    }
+
     public struct enemy
     {
         public GameObject go;
@@ -27,8 +33,10 @@ public class Gamemode : MonoBehaviour
     public static room[] rooms = new room[15];
 
     [Header("Enemies")]
-    [SerializeField] GameObject goblinPF;
-    [SerializeField] GameObject skeletonPF;
+    [SerializeField] public GameObject goblinPF;
+    [SerializeField] public GameObject skeletonPF;
+
+    public static GameObject gm;
 
     private void Awake()
     {
@@ -69,5 +77,52 @@ public class Gamemode : MonoBehaviour
         rooms[13].enemies = new enemy[0];
 
         rooms[14].enemies = new enemy[0];
+    }
+
+    private void Start()
+    {
+        gm = gameObject;
+    }
+
+    public static enemyType checkType(enemy enemy)
+    {
+        if (enemy.go == gm.GetComponent<Gamemode>().skeletonPF)
+        {
+            return enemyType.skeleton;
+        } else
+        {
+            return enemyType.goblin;
+        }
+    }
+
+    public static void removeEnemy(int roomID, enemyType type)
+    {
+        int newLength = rooms[roomID].enemies.Length - 1;
+        enemy[] newEnemyList = new enemy[newLength];
+
+        bool wasRemoved = false;
+
+        if (newLength >= 0)
+        {
+            for (int i = 0; i < rooms[roomID].enemies.Length; i++)
+            {
+                if (wasRemoved)
+                {
+                    newEnemyList[i] = rooms[roomID].enemies[i];
+                }
+                else
+                {
+                    if (checkType(rooms[roomID].enemies[i]) == type)
+                    {
+                    }
+                    else
+                    {
+                        newEnemyList[i] = rooms[roomID].enemies[i];
+                    }
+                }
+            }
+
+            rooms[roomID].enemies = newEnemyList;
+        }
     }
 }
