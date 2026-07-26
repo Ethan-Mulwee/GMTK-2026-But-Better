@@ -4469,6 +4469,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7200382484087860467, guid: 561ec2eae3dd939abba9dc1ed8406918,
         type: 3}
+      propertyPath: spell1Cooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7200382484087860467, guid: 561ec2eae3dd939abba9dc1ed8406918,
+        type: 3}
       propertyPath: runAcceleration
       value: 20
       objectReference: {fileID: 0}

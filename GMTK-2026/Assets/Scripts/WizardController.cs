@@ -210,6 +210,12 @@ public class WizardController : MonoBehaviour
                     Spell2();
                     break;
                 }
+
+                case SelectedSpell.One: {
+                    animator.SetTrigger("Cast2");
+                    Spell1();
+                    break;
+                }
             }
         }
         if (Input.GetMouseButtonDown(2)) {
@@ -268,27 +274,33 @@ public class WizardController : MonoBehaviour
 
     IEnumerator Spell2Routine() {
         yield return new WaitForSeconds(spell2InitialDelay);
-        Instantiate(spell2, gameObject.transform.position, gameObject.transform.rotation);
+        GameObject spell = Instantiate(spell2, gameObject.transform.position, gameObject.transform.rotation);
+        spell.GetComponent<Spell_2>().wizard = this;
         stamina -= 30;
     }
 
     [Header("Spell 1")]
     [SerializeField] float spell1Cooldown;
+    public float spell1InitialDelay = 0.45f;
     [SerializeField] float spell1Timer = 0.0f;
 
     void Spell1()
     {
         if (spell1Timer <= 0.0f)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
-            {
-                Instantiate(spell1, new Vector3(mousePos.x, 1, mousePos.z), Quaternion.identity);
+            StartCoroutine(Spell1Routine());
                 spell1Timer = spell1Cooldown;
-            }
         } else
         {
             spell1Timer -= Time.deltaTime;
         }
+    }
+
+    IEnumerator Spell1Routine() {
+        yield return new WaitForSeconds(spell1InitialDelay);
+        GameObject spell = Instantiate(spell1, mousePos+ new Vector3(0, 0.4f, 0), gameObject.transform.rotation);
+        spell.GetComponent<Spell_1>().wizard = this;
+        stamina -= 40;
     }
 
     void DashForce() {

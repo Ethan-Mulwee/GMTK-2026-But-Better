@@ -11,6 +11,7 @@ public class Spell_2 : MonoBehaviour
     [SerializeField] private int explosionCastCount = 50;
     [SerializeField] private float explosionRadius = 4.0f;
     [SerializeField] private float explosionSphereRadius = 0.5f;
+    public WizardController wizard;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,12 +56,16 @@ public class Spell_2 : MonoBehaviour
         }
         foreach (RaycastHit hit in raycastHits) {
             if (hit.collider != null) {
-                hit.collider.gameObject.GetComponent<IHitable>().Hit(transform.position);
+                IHitable hitable = hit.collider.gameObject.GetComponent<IHitable>();
+                // incase somethign is marked as enemy that shouldn't be
+                if (hitable != null) hitable.Hit(transform.position);
             }
         }
 
         //Create fireball explosion
         firing = false;
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
+
+        wizard.cameraController.StartShake(0.3f, 0.04f);
     }
 }

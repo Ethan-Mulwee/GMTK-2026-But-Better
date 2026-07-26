@@ -6,6 +6,7 @@ public class Spell_1 : MonoBehaviour
 
     [SerializeField] float destroyTimer = 2.5f;
     [SerializeField] float damage;
+    public WizardController wizard;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
