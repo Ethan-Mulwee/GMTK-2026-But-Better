@@ -47,9 +47,11 @@ public class Melee : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         RaycastHit[] hits = Physics.SphereCastAll(wizard.transform.position, 0.5f, wizard.transform.forward, 0.5f, LayerMask.GetMask("Enemy"));
         foreach(RaycastHit hit in hits) {
-            Debug.Log("Hit!");
+            // Debug.Log("Hit!");
             hit.collider.gameObject.GetComponent<IHitable>().Hit(wizard.transform.position);
             wizard.cameraController.StartShake(0.15f, 0.025f);
+            if (wizard.health <= 95)
+                wizard.health += 5;
         }
             // IHitable hitable = activeObject.gameObject.GetComponent<IHitable>();
             // hitable.Hit();

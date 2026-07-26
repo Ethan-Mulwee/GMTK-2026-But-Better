@@ -53,7 +53,7 @@ public class Enemy3 : MonoBehaviour, IHitable
     {
         if (collision.collider.gameObject == target.gameObject && following) {
             Debug.Log("hit player");
-            target.hurt(20);
+            target.hurt(15);
             Destroy(gameObject);
         }
         if (!following) {

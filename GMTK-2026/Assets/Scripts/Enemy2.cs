@@ -72,7 +72,7 @@ public class Enemy2 : MonoBehaviour, IHitable
             foreach (RaycastHit hit in raycastHits) {
                 if (hit.collider != null) {
                     WizardController wizard = hit.collider.gameObject.GetComponent<WizardController>();
-                    target.hurt(50);
+                    target.hurt(33);
                     break;
                 }
             }
