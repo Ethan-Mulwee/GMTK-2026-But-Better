@@ -153,7 +153,7 @@ public class WizardController : MonoBehaviour
         spell2Timer -= Time.deltaTime;
         spell3Timer -= Time.deltaTime;
 
-        if (transform.position.y < -10.0f) {
+        if (transform.position.y < -10.0f || health <= 0) {
             SceneManager.LoadScene("Dungeon");
         }
     }

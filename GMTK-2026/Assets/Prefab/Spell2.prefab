@@ -133,8 +133,8 @@ MonoBehaviour:
   damage: 25
   explosionTime: 1
   explosionCastCount: 50
-  explosionRadius: 2
-  explosionSphereRadius: 0.1
+  explosionRadius: 4
+  explosionSphereRadius: 0.3
   particleSystem: {fileID: 3890650595559853112}
   wizard: {fileID: 0}
 --- !u!54 &646185244133967372

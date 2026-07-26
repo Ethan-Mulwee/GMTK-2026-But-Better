@@ -26,7 +26,7 @@ public class Enemy2 : MonoBehaviour, IHitable
     float explosionDistance = 1.0f;
     int explosionCastCount = 50;
     float explosionSphereRadius = 0.2f;
-    float explosionRadius = 1.0f;
+    float explosionRadius = 2.5f;
 
 
 
