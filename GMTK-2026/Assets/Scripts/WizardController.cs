@@ -36,7 +36,7 @@ public class WizardController : MonoBehaviour
     [SerializeField] float runAcceleration = 2.0f;
     [SerializeField] float runMaxAcceleration = 10.0f;
     [SerializeField] float jumpStrength = 1.0f;
-    [SerializeField] CameraController cameraController;
+    [SerializeField] public CameraController cameraController;
     public GameObject swipe;
     // [SerializeField] float jumpStrength = 1.0f;
 
@@ -182,6 +182,8 @@ public class WizardController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(2)) {
             animator.SetTrigger("Melee");
+            swipe.SetActive(false);
+            swipe.SetActive(true);
             meleeScript.Attack();
         }
     }

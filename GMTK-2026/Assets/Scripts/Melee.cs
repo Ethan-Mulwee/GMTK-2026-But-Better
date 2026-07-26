@@ -35,6 +35,7 @@ public class Melee : MonoBehaviour
     }
 
     public void Attack() {
+        // Physics.SphereCastAll(wizard.transform.position, 0.5f, wizard.transform.forward, 0.5f, LayerMask.GetMask("Enemy"));
         if (activeObject != null) {
             // IHitable hitable = activeObject.gameObject.GetComponent<IHitable>();
             // hitable.Hit();
@@ -43,8 +44,14 @@ public class Melee : MonoBehaviour
     }
 
     IEnumerator AttackRoutine() {
-        yield return new WaitForSeconds(0.15f);
-            IHitable hitable = activeObject.gameObject.GetComponent<IHitable>();
-            hitable.Hit();
+        yield return new WaitForSeconds(0.05f);
+        RaycastHit[] hits = Physics.SphereCastAll(wizard.transform.position, 0.5f, wizard.transform.forward, 0.5f, LayerMask.GetMask("Enemy"));
+        foreach(RaycastHit hit in hits) {
+            Debug.Log("Hit!");
+            hit.collider.gameObject.GetComponent<IHitable>().Hit();
+            wizard.cameraController.StartShake(0.1f, 0.02f);
+        }
+            // IHitable hitable = activeObject.gameObject.GetComponent<IHitable>();
+            // hitable.Hit();
     }
 }
