@@ -128,6 +128,16 @@ public class WizardController : MonoBehaviour
                 spell = SelectedSpell.Three;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) && spell2Enabled) {
+            if (spell == SelectedSpell.Two) {
+                spell = SelectedSpell.Melee;
+            }
+            else {
+                spell = SelectedSpell.Two;
+            }
+        }
+        spell2Timer -= Time.deltaTime;
         spell3Timer -= Time.deltaTime;
     }
 
@@ -183,6 +193,12 @@ public class WizardController : MonoBehaviour
                     Spell3();
                     break;
                 }
+
+                case SelectedSpell.Two: {
+                    animator.SetTrigger("Cast2");
+                    Spell2();
+                    break;
+                }
             }
         }
         if (Input.GetMouseButtonDown(2)) {
@@ -225,21 +241,24 @@ public class WizardController : MonoBehaviour
 
     [Header("Spell 2")]
     [SerializeField] float spell2Cooldown;
+    public float spell2InitialDelay = 0.2f;
     [SerializeField] float spell2Timer = 0.0f;
 
     void Spell2()
     {
         if (spell2Timer <= 0.0f)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
-            {
-                Instantiate(spell2, gameObject.transform.position, gameObject.transform.rotation);
-                spell2Timer = spell2Cooldown;
-            }
+            StartCoroutine(Spell2Routine());
         } else
         {
             spell2Timer -= Time.deltaTime;
         }
+    }
+
+    IEnumerator Spell2Routine() {
+        yield return new WaitForSeconds(spell2InitialDelay);
+        Instantiate(spell2, gameObject.transform.position, gameObject.transform.rotation);
+        stamina -= 30;
     }
 
     [Header("Spell 1")]
