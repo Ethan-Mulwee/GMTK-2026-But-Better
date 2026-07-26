@@ -137,6 +137,17 @@ public class WizardController : MonoBehaviour
                 spell = SelectedSpell.Two;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && spell1Enabled) {
+            if (spell == SelectedSpell.One) {
+                spell = SelectedSpell.Melee;
+            }
+            else {
+                spell = SelectedSpell.One;
+            }
+        }
+
+        spell1Timer -= Time.deltaTime;
         spell2Timer -= Time.deltaTime;
         spell3Timer -= Time.deltaTime;
     }

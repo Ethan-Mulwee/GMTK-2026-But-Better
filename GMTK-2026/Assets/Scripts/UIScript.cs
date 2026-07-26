@@ -26,8 +26,12 @@ public class UIScript : MonoBehaviour
         if (wizard.spell2Enabled) {
             twoIcon.gameObject.SetActive(true);
         }
+        if (wizard.spell1Enabled) {
+            oneIcon.gameObject.SetActive(true);
+        }
         threeIcon.color = new Color(27.0f/255.0f, 39.0f/255.0f, 54.0f/255.0f);
         twoIcon.color = new Color(27.0f/255.0f, 39.0f/255.0f, 54.0f/255.0f);
+        oneIcon.color = new Color(27.0f/255.0f, 39.0f/255.0f, 54.0f/255.0f);
         switch (wizard.spell) {
             case SelectedSpell.Three: {
                 threeIcon.color = Color.white;
@@ -35,6 +39,10 @@ public class UIScript : MonoBehaviour
             }
             case SelectedSpell.Two: {
                 twoIcon.color = Color.white;
+                break;
+            }
+            case SelectedSpell.One: {
+                oneIcon.color = Color.white;
                 break;
             }
         }
