@@ -98,6 +98,7 @@ public class Enemy2 : MonoBehaviour, IHitable
             particles.gameObject.SetActive(true);
             particles.Play();
             exploded = true;
+            StartCoroutine(killTimer());
         }
     }
 
@@ -129,7 +130,7 @@ public class Enemy2 : MonoBehaviour, IHitable
 
     // incase it gets out of bounds somehow
     IEnumerator killTimer() {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(2.0f);
         Destroy(gameObject);
     }
 }
