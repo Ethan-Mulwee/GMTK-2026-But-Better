@@ -121,7 +121,12 @@ public class WizardController : MonoBehaviour
 
 
         if (Input.GetKeyDown(KeyCode.Alpha3) && spell3Enabled) {
-            spell = SelectedSpell.Three;
+            if (spell == SelectedSpell.Three) {
+                spell = SelectedSpell.Melee;
+            }
+            else {
+                spell = SelectedSpell.Three;
+            }
         }
         spell3Timer -= Time.deltaTime;
     }
