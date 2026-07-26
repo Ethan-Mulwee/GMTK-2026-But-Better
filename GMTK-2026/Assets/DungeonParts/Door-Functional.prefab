@@ -67,6 +67,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   an: {fileID: 7957308597819061219}
+  locked: 0
+  meshFilter: {fileID: 1132437767537462485}
+  unlockedMesh: {fileID: 7768757500298153253, guid: e991f4e559168e6aa98f511b0220abe2,
+    type: 3}
+  lockedMesh: {fileID: -5197164064352184582, guid: 3aad6289478f4abd69791ac452699580,
+    type: 3}
 --- !u!1 &4117370298335587660
 GameObject:
   m_ObjectHideFlags: 0

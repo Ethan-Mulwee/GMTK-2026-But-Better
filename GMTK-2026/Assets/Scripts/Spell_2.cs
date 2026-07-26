@@ -63,6 +63,19 @@ public class Spell_2 : MonoBehaviour
             }
         }
 
+        RaycastHit[] raycastHits2= new RaycastHit[explosionCastCount];
+        for (int i = 0; i < explosionCastCount; i++) {
+            float angle = (i/((float)explosionCastCount))*Mathf.PI*2.0f;
+            Ray ray = new Ray(transform.position, new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)));
+            Physics.Raycast(ray, out raycastHits2[i], explosionRadius);
+        }
+
+        foreach (RaycastHit hit in raycastHits2) {
+            if (hit.rigidbody != null) {
+                hit.rigidbody.AddForce((hit.rigidbody.position - transform.position).normalized*0.3f, ForceMode.Impulse);
+            }
+        }
+
         //Create fireball explosion
         firing = false;
         gameObject.transform.GetChild(0).gameObject.SetActive(true);

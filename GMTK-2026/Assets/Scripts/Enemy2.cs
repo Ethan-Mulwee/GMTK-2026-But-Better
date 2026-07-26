@@ -25,8 +25,8 @@ public class Enemy2 : MonoBehaviour, IHitable
     float explosionTimer = 1.0f;
     float explosionDistance = 1.0f;
     int explosionCastCount = 50;
-    float explosionSphereRadius = 0.5f;
-    float explosionRadius = 3.0f;
+    float explosionSphereRadius = 0.2f;
+    float explosionRadius = 1.0f;
 
 
 
@@ -71,9 +71,25 @@ public class Enemy2 : MonoBehaviour, IHitable
             }
             foreach (RaycastHit hit in raycastHits) {
                 if (hit.collider != null) {
+                
                     WizardController wizard = hit.collider.gameObject.GetComponent<WizardController>();
-                    target.hurt(33);
-                    break;
+                    if (wizard != null) {
+                        target.hurt(33);
+                        break;
+                    }
+                }
+            }
+
+                RaycastHit[] raycastHits2= new RaycastHit[explosionCastCount];
+            for (int i = 0; i < explosionCastCount; i++) {
+                float angle = (i/((float)explosionCastCount))*Mathf.PI*2.0f;
+                Ray ray = new Ray(transform.position, new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)));
+                Physics.Raycast(ray, out raycastHits2[i], explosionRadius);
+            }
+
+            foreach (RaycastHit hit in raycastHits2) {
+                if (hit.rigidbody != null) {
+                    hit.rigidbody.AddForce(hit.rigidbody.position - transform.position, ForceMode.Impulse);
                 }
             }
             target.cameraController.StartShake(0.3f, 0.04f);
