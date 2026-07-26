@@ -33,6 +33,7 @@ public class WizardController : MonoBehaviour
     [SerializeField] float runMaxSpeed = 6.0f;
     [SerializeField] float runAcceleration = 2.0f;
     [SerializeField] float runMaxAcceleration = 10.0f;
+    [SerializeField] float jumpStrength = 1.0f;
     // [SerializeField] float jumpStrength = 1.0f;
 
     // [Header("Object Grab Settings")]
@@ -71,6 +72,7 @@ public class WizardController : MonoBehaviour
     Vector3 velocity;
     Quaternion targetOrientation = Quaternion.identity;
     Vector3 mousePos;
+    bool grounded = true;
     public SelectedSpell spell = SelectedSpell.Melee;
     [SerializeField] Melee meleeScript;
 
@@ -93,6 +95,7 @@ public class WizardController : MonoBehaviour
 
     // State
     // bool grounded = true;
+    bool jumped = false;
     bool dashing = true;
     public bool spell3Enabled = false;
     public bool spell2Enabled = false;
@@ -105,17 +108,28 @@ public class WizardController : MonoBehaviour
     void Update() {
         GetInput();
         Attack();
-        // Jump();
+        Jump();
         Dash();
         // Spell3();
         // Spell2();
         // Spell1();
         AnimParameters();
 
+
         if (Input.GetKeyDown(KeyCode.Alpha3) && spell3Enabled) {
             spell = SelectedSpell.Three;
         }
         spell3Timer -= Time.deltaTime;
+    }
+
+    void Jump() {
+        if (Input.GetKeyDown(KeyCode.Space) && grounded) {
+            rb.AddForce(Vector3.up*jumpStrength, ForceMode.Impulse);
+            grounded = false;
+            an.SetTrigger("Jump");
+            jumped = true;
+            // Debug.Log("Set jumped");
+        }
     }
 
     void LateUpdate() {
@@ -124,6 +138,7 @@ public class WizardController : MonoBehaviour
 
     void FixedUpdate() {
         FloatForce();
+        jumped = false;
         OrientationForce();
         MoveForce();
         // DashForce();
@@ -131,8 +146,8 @@ public class WizardController : MonoBehaviour
 
     void VisualTilt() {
         wizardModel.transform.rotation = Quaternion.AngleAxis(new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude*4.0f, transform.right)*transform.rotation;
-        if (!Input.GetKey(KeyCode.LeftShift))
-            wizardHat.transform.rotation = Quaternion.AngleAxis(Mathf.Clamp(new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude*-5.0f, -20.0f, 20.0f), transform.right)*wizardModel.transform.rotation;
+        // if (!Input.GetKey(KeyCode.LeftShift))
+            // wizardHat.transform.rotation = Quaternion.AngleAxis(Mathf.Clamp(new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude*-5.0f, -20.0f, 20.0f), transform.right)*wizardModel.transform.rotation;
     }
 
     Vector3 dashVector = Vector3.zero;
@@ -249,7 +264,7 @@ public class WizardController : MonoBehaviour
 
     void GetInput() {
         movementInput = Vector3.ClampMagnitude(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")), 1);
-        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0,90,0));
+        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0,45,0));
         movementInput = matrix.MultiplyPoint3x4(movementInput);
 
         aiming = Input.GetMouseButton(1);
@@ -294,8 +309,7 @@ public class WizardController : MonoBehaviour
     void FloatForce() {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, Vector3.down);
-
-        if (Physics.Raycast(ray, out hit, rayLength, ~(1 << 7))) {
+        if (Physics.Raycast(ray, out hit, rayLength, ~LayerMask.GetMask("Ignore Raycast", "Player"))) {
 
 
             Vector3 velocity = rb.linearVelocity;
@@ -306,6 +320,7 @@ public class WizardController : MonoBehaviour
             if (hitBody != null) {
                 otherVelocity = hitBody.linearVelocity;
             }
+
 
             float velocityInRayDirection = Vector3.Dot(rayDirection, velocity);
             float otherVelocityInRayDirection = Vector3.Dot(rayDirection, otherVelocity);
@@ -327,9 +342,13 @@ public class WizardController : MonoBehaviour
             if (hitBody != null) {
                 hitBody.AddForceAtPosition(rayDirection*-springForce, hit.point);
             }
-            // grounded = true;
+            grounded = true;
+            if (rb.linearVelocity.y <= 0 && !jumped) {
+                an.SetTrigger("Land");
+                // Debug.Log("Set land");
+            }
         }
-        // else {grounded = false;}
+        else {grounded = false;}
     }
 
 
@@ -380,19 +399,23 @@ public class WizardController : MonoBehaviour
     // }
 
     void AnimParameters() {
-        if (Input.GetKey(KeyCode.LeftShift)) {
-            an.SetFloat("Velocity", movementInput.magnitude);
-        }
-        else {
-            an.SetFloat("Velocity", movementInput.magnitude*0.5f);
-        }
+        // if (Input.GetKey(KeyCode.LeftShift)) {
+        //     an.SetFloat("Velocity", movementInput.magnitude);
+        // }
+        // else {
+        //     an.SetFloat("Velocity", movementInput.magnitude*0.5f);
+        // }
+        Vector3 horizontalVelocity = rb.linearVelocity;
+        horizontalVelocity.y = 0;
+        an.SetFloat("Velocity", horizontalVelocity.magnitude*(1.0f/4.0f));
+        // Debug.Log(rb.linearVelocity.magnitude*(1.0f/4.0f));
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Camera Trigger")
-        {
-            cam_Pivot.GetComponent<CameraController>().target = other.gameObject;
-        }
+        // if (other.gameObject.tag == "Camera Trigger")
+        // {
+        //     cam_Pivot.GetComponent<CameraController>().target = other.gameObject;
+        // }
     }
 }

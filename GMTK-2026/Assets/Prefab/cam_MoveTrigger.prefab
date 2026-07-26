@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3681554819154172692}
   - component: {fileID: 1420956924179929294}
   - component: {fileID: 1131366467297466092}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: cam_MoveTrigger
   m_TagString: Camera Trigger
   m_Icon: {fileID: 0}
@@ -66,3 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc0bec5dad6b144fb97d9423720dcb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Room
+  roomID: 0
+  enemyList: []
+  reward: {fileID: 0}
+  door: {fileID: 0}
