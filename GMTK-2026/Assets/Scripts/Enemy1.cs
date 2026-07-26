@@ -40,8 +40,8 @@ public class Enemy1 : MonoBehaviour, IHitable
         }
         
         if (attackTimer <= 0.0f && sighted) {
-            attackTimer = attackCooldown + Random.Range(0.0f, 0.5f);
-            Vector2 random = Random.insideUnitCircle;
+            attackTimer = attackCooldown + Random.Range(0.0f, 0.9f);
+            Vector2 random = Random.insideUnitCircle*2.0f;
             GameObject asd = Instantiate(strike, target.transform.position + new Vector3(random.x, 0, random.y), Quaternion.identity);
             asd.GetComponent<OneStrike>().target = target;
         }

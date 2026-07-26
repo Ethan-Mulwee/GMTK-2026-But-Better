@@ -15,15 +15,16 @@ public class LightManager : MonoBehaviour
     }
 
     void Update() {
-        // foreach (Light light in lights) {
-        //     if (Vector3.Distance(light.gameObject.transform.position, gameObject.transform.position) < activeLightDistance) {
-        //         // light.enabled = true;
+        foreach (Light light in lights) {
+            if (light == null) return;
+            if (Vector3.Distance(light.gameObject.transform.position, gameObject.transform.position) < activeLightDistance) {
+                light.enabled = true;
 
-        //     }
-        //     else {
+            }
+            else {
 
-        //         // light.enabled = false;
-        //     }
-        // }
+                light.enabled = false;
+            }
+        }
     }
 }

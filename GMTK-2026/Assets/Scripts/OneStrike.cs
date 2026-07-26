@@ -21,7 +21,7 @@ public class OneStrike : MonoBehaviour
     }
 
     IEnumerator timeStrike() {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.4f);
         indicator.SetActive(false);
         strike.SetActive(true);
 
