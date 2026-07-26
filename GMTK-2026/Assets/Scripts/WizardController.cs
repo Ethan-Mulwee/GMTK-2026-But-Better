@@ -227,8 +227,8 @@ public class WizardController : MonoBehaviour
     }
 
     [Header ("Spell 3")]
-    [SerializeField] float spell3Cooldown;
-    [SerializeField] float spell3Timer = 0.0f;
+    [SerializeField] public float spell3Cooldown;
+    [SerializeField] public  float spell3Timer = 0.0f;
     [SerializeField] float spell3InitialDelay = 0.5f;
     [SerializeField] float spell3SecondDelay = 0.2f;
 
@@ -257,15 +257,16 @@ public class WizardController : MonoBehaviour
     }
 
     [Header("Spell 2")]
-    [SerializeField] float spell2Cooldown;
+    [SerializeField] public float spell2Cooldown;
     public float spell2InitialDelay = 0.2f;
-    [SerializeField] float spell2Timer = 0.0f;
+    [SerializeField] public float spell2Timer = 0.0f;
 
     void Spell2()
     {
         if (spell2Timer <= 0.0f)
         {
             StartCoroutine(Spell2Routine());
+            spell2Timer = spell2Cooldown;
         } else
         {
             spell2Timer -= Time.deltaTime;
@@ -301,6 +302,7 @@ public class WizardController : MonoBehaviour
         GameObject spell = Instantiate(spell1, mousePos+ new Vector3(0, 0.4f, 0), gameObject.transform.rotation);
         spell.GetComponent<Spell_1>().wizard = this;
         stamina -= 40;
+        cameraController.StartShake(0.1f, 0.05f);
     }
 
     void DashForce() {
