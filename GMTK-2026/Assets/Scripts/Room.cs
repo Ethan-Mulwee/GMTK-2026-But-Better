@@ -40,7 +40,15 @@ public class Room : MonoBehaviour
         if (other.gameObject.tag == "Player" && !cleared) {
             foreach (GameObject enemy in enemyList) {
                 Enemy3 a = enemy.GetComponent<Enemy3>();
-                a.activated = true;
+                if (a != null) {
+                    a.activated = true;
+                }
+                else {
+                    Enemy2 b = enemy.GetComponent<Enemy2>();
+                    if (b != null) {
+                        b.activated = true;
+                    }
+                }
             }
         }
         // {
