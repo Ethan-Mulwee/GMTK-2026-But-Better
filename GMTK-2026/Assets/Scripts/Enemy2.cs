@@ -54,7 +54,7 @@ public class Enemy2 : MonoBehaviour, IHitable
         }
 
         if (Vector3.Distance(target.transform.position, transform.position) < explosionDistance) {
-            Debug.Log("Explosion triggered");
+            // Debug.Log("Explosion triggered");
             exploding = true;
             textMesh.gameObject.transform.localScale = new Vector3(1.2f,1.2f,1.2f);
         }
@@ -74,7 +74,7 @@ public class Enemy2 : MonoBehaviour, IHitable
                 
                     WizardController wizard = hit.collider.gameObject.GetComponent<WizardController>();
                     if (wizard != null) {
-                        target.hurt(33);
+                        target.hurt(40);
                         break;
                     }
                 }

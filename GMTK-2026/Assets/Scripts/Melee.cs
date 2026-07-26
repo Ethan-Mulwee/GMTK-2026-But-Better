@@ -50,8 +50,8 @@ public class Melee : MonoBehaviour
             // Debug.Log("Hit!");
             hit.collider.gameObject.GetComponent<IHitable>().Hit(wizard.transform.position);
             wizard.cameraController.StartShake(0.15f, 0.025f);
-            if (wizard.health <= 95)
-                wizard.health += 5;
+            if (wizard.health <= 94)
+                wizard.health += 3;
         }
             // IHitable hitable = activeObject.gameObject.GetComponent<IHitable>();
             // hitable.Hit();

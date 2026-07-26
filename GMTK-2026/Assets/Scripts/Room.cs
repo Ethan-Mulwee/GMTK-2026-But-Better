@@ -48,6 +48,12 @@ public class Room : MonoBehaviour
                     if (b != null) {
                         b.activated = true;
                     }
+                    else {
+                        Enemy1 c = enemy.GetComponent<Enemy1>();
+                        if (c != null) {
+                            c.activated = true;
+                        }
+                    }
                 }
             }
         }
