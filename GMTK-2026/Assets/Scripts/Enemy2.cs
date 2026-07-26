@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy2 : MonoBehaviour, IHitable
 {
@@ -14,11 +15,13 @@ public class Enemy2 : MonoBehaviour, IHitable
     [SerializeField] float activateDistance = 5.0f;
     [SerializeField] float speed = 0.5f;
     public GameObject explosionObject;
+    public ParticleSystem particles;
 
     bool following = true;
     bool sighted = false;
     public bool activated = false;
     bool exploding = false;
+    bool exploded = false;
     float explosionTimer = 1.0f;
     float explosionDistance = 1.0f;
     int explosionCastCount = 50;
@@ -36,6 +39,8 @@ public class Enemy2 : MonoBehaviour, IHitable
     // Update is called once per frame
     void Update()
     {
+        if (exploded) return;
+
         if (Vector3.Distance(target.transform.position, transform.position) < activateDistance && !sighted && activated) {
             sighted = true;
             textMesh.color = Color.red;
@@ -72,7 +77,11 @@ public class Enemy2 : MonoBehaviour, IHitable
                 }
             }
             target.cameraController.StartShake(0.3f, 0.04f);
-            Destroy(gameObject);
+            // Destroy(gameObject);
+            textMesh.gameObject.SetActive(false);
+            particles.gameObject.SetActive(true);
+            particles.Play();
+            exploded = true;
         }
     }
 
