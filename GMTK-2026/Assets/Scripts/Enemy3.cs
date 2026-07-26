@@ -38,11 +38,11 @@ public class Enemy3 : MonoBehaviour, IHitable
         }
     }
 
-    public void Hit()
+    public void Hit(Vector3 hitPos)
     {
         following = false;
 
-        Vector3 awayFromPlayer = (gameObject.transform.position - target.transform.position).normalized;
+        Vector3 awayFromPlayer = (gameObject.transform.position - hitPos).normalized;
         rb.AddForce(awayFromPlayer * knockbackForce, ForceMode.Impulse);
         textMesh.color = Color.green;
     }

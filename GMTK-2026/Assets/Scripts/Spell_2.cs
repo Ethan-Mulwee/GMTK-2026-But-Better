@@ -8,6 +8,9 @@ public class Spell_2 : MonoBehaviour
     [SerializeField] float damage;
     bool firing = true;
     [SerializeField] float explosionTime;
+    [SerializeField] private int explosionCastCount = 50;
+    [SerializeField] private float explosionRadius = 4.0f;
+    [SerializeField] private float explosionSphereRadius = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +46,18 @@ public class Spell_2 : MonoBehaviour
         util.checkCollision(collision);
 
         gameObject.GetComponent<Collider>().enabled = false;
+
+        RaycastHit[] raycastHits = new RaycastHit[explosionCastCount];
+        for (int i = 0; i < explosionCastCount; i++) {
+            float angle = (i/((float)explosionCastCount))*Mathf.PI*2.0f;
+            Ray ray = new Ray(transform.position, new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)));
+            Physics.SphereCast(ray, explosionSphereRadius, out raycastHits[i], explosionRadius, LayerMask.GetMask("Enemy"));
+        }
+        foreach (RaycastHit hit in raycastHits) {
+            if (hit.collider != null) {
+                hit.collider.gameObject.GetComponent<IHitable>().Hit(transform.position);
+            }
+        }
 
         //Create fireball explosion
         firing = false;

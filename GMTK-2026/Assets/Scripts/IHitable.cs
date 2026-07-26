@@ -1,4 +1,5 @@
+using UnityEngine;
 public interface IHitable
 {
-    void Hit();
+    void Hit(Vector3 hitPos);
 }

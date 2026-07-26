@@ -26,6 +26,11 @@ public class Spell_3 : MonoBehaviour
             collision.gameObject.GetComponent<EnemyScript>().health -= damage;
         } catch { }
 
+        IHitable hitable = collision.collider.gameObject.GetComponent<IHitable>();
+        if (hitable != null) {
+            hitable.Hit(transform.position);
+        }
+
         util.checkCollision(collision);
 
         Destroy(gameObject);
