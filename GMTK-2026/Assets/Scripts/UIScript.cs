@@ -7,6 +7,8 @@ public class UIScript : MonoBehaviour
     public Image threeIcon;
     public Image twoIcon;
     public Image oneIcon;
+    public RectTransform Health;
+    public RectTransform Stamina;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,5 +30,8 @@ public class UIScript : MonoBehaviour
                 break;
             }
         }
+        
+        Health.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, wizard.health*(500.0f/wizard.maxHealth));
+        Stamina.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, wizard.stamina*(500.0f/wizard.maxStamina));
     }
 }

@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 100
+  maxStamina: 0
+  stamina: 0
   dashCooldown: 0
   keyCount: 0
   restingHeight: 0.53
@@ -66,6 +68,8 @@ MonoBehaviour:
   runAcceleration: 2
   runMaxAcceleration: 10
   jumpStrength: 1
+  cameraController: {fileID: 0}
+  swipe: {fileID: 3823113587303926266}
   wizardModel: {fileID: 2643759329949007098}
   an: {fileID: 3845129473651100275}
   wizardHat: {fileID: 6069547161069122386}
@@ -150,13 +154,14 @@ GameObject:
   - component: {fileID: 1101625403274065624}
   - component: {fileID: 8292824452482787303}
   - component: {fileID: 4320034750716804519}
+  - component: {fileID: 4799699021566655423}
   m_Layer: 0
   m_Name: Swipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1101625403274065624
 Transform:
   m_ObjectHideFlags: 0
@@ -205,7 +210,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d3dda1ca6b0ae03d3a2249eae96af8b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -229,6 +234,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &4799699021566655423
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3823113587303926266}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ee9f2da7b944cfb8a0e66f4003e58f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6108605942439357918
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,8 +10,10 @@ public enum SelectedSpell {
 public class WizardController : MonoBehaviour
 {
     [Header("Player Stats")]
-    [SerializeField] float maxHealth;
+    [SerializeField] public float maxHealth;
     [SerializeField] public float health;
+    [SerializeField] public float maxStamina;
+    [SerializeField] public float stamina;
     [SerializeField] float dashCooldown;
     public int keyCount = 0;
     
@@ -34,6 +36,8 @@ public class WizardController : MonoBehaviour
     [SerializeField] float runAcceleration = 2.0f;
     [SerializeField] float runMaxAcceleration = 10.0f;
     [SerializeField] float jumpStrength = 1.0f;
+    [SerializeField] CameraController cameraController;
+    public GameObject swipe;
     // [SerializeField] float jumpStrength = 1.0f;
 
     // [Header("Object Grab Settings")]
@@ -159,10 +163,12 @@ public class WizardController : MonoBehaviour
     }
 
     void Attack() {
-        if (Input.GetMouseButtonDown(0) && aiming) {
+        if (Input.GetMouseButtonDown(0)) {
             switch (spell) {
                 case SelectedSpell.Melee: {
                     animator.SetTrigger("Melee");
+                    swipe.SetActive(false);
+                    swipe.SetActive(true);
                     meleeScript.Attack();
                     break;
                 }
@@ -195,11 +201,19 @@ public class WizardController : MonoBehaviour
         }
     }
 
+    public void hurt(int damage) {
+        health -= damage;
+        an.SetTrigger("Damage");
+        cameraController.StartShake(0.2f, 0.03f);
+    }
+
     IEnumerator Spell3Routine() {
         yield return new WaitForSeconds(spell3InitialDelay);
         Instantiate(spell3, gameObject.transform.position, gameObject.transform.rotation);
+        stamina -= 15;
         yield return new WaitForSeconds(spell3SecondDelay);
         Instantiate(spell3, gameObject.transform.position, gameObject.transform.rotation);
+        stamina -= 15;
     }
 
     [Header("Spell 2")]
@@ -283,19 +297,34 @@ public class WizardController : MonoBehaviour
             targetOrientation = Quaternion.LookRotation(movementInput, Vector3.up);
     }
 
+    bool running = false;
+
     void MoveForce() {
         float maxSpeed = 0.0f;
         float acceleration = 0.0f;
         float maxAcceleration = 0.0f;
-        if (Input.GetKey(KeyCode.LeftShift)) {
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 10.0f && !running) {
+            running = true;
+            stamina -= Time.deltaTime * 30.0f;
             maxSpeed = runMaxSpeed;
             acceleration = runAcceleration;
             maxAcceleration = runMaxAcceleration;
-        } else {
+        } 
+        else if (Input.GetKey(KeyCode.LeftShift) && stamina > 1.0f && running) {
+            stamina -= Time.deltaTime * 30.0f;
+            maxSpeed = runMaxSpeed;
+            acceleration = runAcceleration;
+            maxAcceleration = runMaxAcceleration;
+        } 
+        else {
             maxSpeed = walkMaxSpeed;
             acceleration = walkAcceleration;
             maxAcceleration = walkMaxAcceleration;
+            stamina += Time.deltaTime*20.0f;
+            running = false;
         }
+        if (stamina > maxStamina)
+            stamina = maxStamina;
 
         Vector3 goalVelocity = movementInput * maxSpeed;
         velocity = Vector3.MoveTowards(velocity, goalVelocity, acceleration*Time.deltaTime);

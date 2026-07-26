@@ -7,10 +7,11 @@ public class Enemy3 : MonoBehaviour, IHitable
 
     Rigidbody rb;
     [SerializeField] TextMeshPro textMesh;
-    public GameObject target;
+    public WizardController target;
 
     [SerializeField] float knockbackForce = 10.0f;
     [SerializeField] float activateDistance = 5.0f;
+    [SerializeField] float speed = 0.5f;
 
     bool following = true;
     bool activated = false;
@@ -32,7 +33,7 @@ public class Enemy3 : MonoBehaviour, IHitable
         if (following && activated)
         {
             Vector3 vec = target.transform.position - gameObject.transform.position;
-            rb.AddForce(target.transform.position - gameObject.transform.position);
+            rb.AddForce((target.transform.position - gameObject.transform.position) * speed);
             textMesh.transform.Rotate(0.0f, 0.0f, 1.0f);
         }
     }
@@ -48,8 +49,9 @@ public class Enemy3 : MonoBehaviour, IHitable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject == target && following) {
+        if (collision.collider.gameObject == target.gameObject && following) {
             Debug.Log("hit player");
+            target.hurt(20);
             Destroy(gameObject);
         }
         if (!following) {
