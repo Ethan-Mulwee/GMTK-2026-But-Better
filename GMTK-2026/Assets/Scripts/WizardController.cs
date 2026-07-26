@@ -250,9 +250,11 @@ public class WizardController : MonoBehaviour
     IEnumerator Spell3Routine() {
         yield return new WaitForSeconds(spell3InitialDelay);
         Instantiate(spell3, gameObject.transform.position, gameObject.transform.rotation);
+        cameraController.StartShake(0.05f, 0.03f);
         stamina -= 15;
         yield return new WaitForSeconds(spell3SecondDelay);
         Instantiate(spell3, gameObject.transform.position, gameObject.transform.rotation);
+        cameraController.StartShake(0.05f, 0.03f);
         stamina -= 15;
     }
 

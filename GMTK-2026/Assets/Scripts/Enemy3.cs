@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -14,7 +15,8 @@ public class Enemy3 : MonoBehaviour, IHitable
     [SerializeField] float speed = 0.5f;
 
     bool following = true;
-    bool activated = false;
+    bool sighted = false;
+    public bool activated = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,12 +27,12 @@ public class Enemy3 : MonoBehaviour, IHitable
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(target.transform.position, transform.position) < activateDistance && !activated) {
-            activated = true;
+        if (Vector3.Distance(target.transform.position, transform.position) < activateDistance && !sighted && activated) {
+            sighted = true;
             textMesh.color = Color.red;
         }
 
-        if (following && activated)
+        if (following && sighted)
         {
             Vector3 vec = target.transform.position - gameObject.transform.position;
             rb.AddForce((target.transform.position - gameObject.transform.position) * speed);
@@ -45,6 +47,7 @@ public class Enemy3 : MonoBehaviour, IHitable
         Vector3 awayFromPlayer = (gameObject.transform.position - hitPos).normalized;
         rb.AddForce(awayFromPlayer * knockbackForce, ForceMode.Impulse);
         textMesh.color = Color.green;
+        StartCoroutine(killTimer());
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -58,5 +61,11 @@ public class Enemy3 : MonoBehaviour, IHitable
             Destroy(gameObject);
         }
         // Destroy(gameObject);
+    }
+
+    // incase it gets out of bounds somehow
+    IEnumerator killTimer() {
+        yield return new WaitForSeconds(5.0f);
+        Destroy(gameObject);
     }
 }

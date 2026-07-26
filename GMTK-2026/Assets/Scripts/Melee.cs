@@ -49,7 +49,7 @@ public class Melee : MonoBehaviour
         foreach(RaycastHit hit in hits) {
             Debug.Log("Hit!");
             hit.collider.gameObject.GetComponent<IHitable>().Hit(wizard.transform.position);
-            wizard.cameraController.StartShake(0.1f, 0.02f);
+            wizard.cameraController.StartShake(0.15f, 0.025f);
         }
             // IHitable hitable = activeObject.gameObject.GetComponent<IHitable>();
             // hitable.Hit();

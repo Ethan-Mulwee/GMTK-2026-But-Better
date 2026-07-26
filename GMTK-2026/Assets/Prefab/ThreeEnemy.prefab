@@ -235,7 +235,9 @@ MonoBehaviour:
   textMesh: {fileID: 2139120303778916974}
   target: {fileID: 0}
   knockbackForce: 7
-  activateDistance: 4
+  activateDistance: 6
+  speed: 0.5
+  activated: 0
 --- !u!136 &2076183112951604399
 CapsuleCollider:
   m_ObjectHideFlags: 0

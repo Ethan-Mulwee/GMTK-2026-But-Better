@@ -37,7 +37,12 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // if (other.gameObject.tag == "Player" && !cleared)
+        if (other.gameObject.tag == "Player" && !cleared) {
+            foreach (GameObject enemy in enemyList) {
+                Enemy3 a = enemy.GetComponent<Enemy3>();
+                a.activated = true;
+            }
+        }
         // {
         //     if (layout.enemies.Length > 0)
         //     {
