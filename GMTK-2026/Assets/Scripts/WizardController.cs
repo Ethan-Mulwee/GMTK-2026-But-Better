@@ -147,6 +147,7 @@ public class WizardController : MonoBehaviour
             }
         }
 
+        meleeTimer -= Time.deltaTime;
         spell1Timer -= Time.deltaTime;
         spell2Timer -= Time.deltaTime;
         spell3Timer -= Time.deltaTime;
@@ -192,10 +193,13 @@ public class WizardController : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             switch (spell) {
                 case SelectedSpell.Melee: {
-                    animator.SetTrigger("Melee");
-                    swipe.SetActive(false);
-                    swipe.SetActive(true);
-                    meleeScript.Attack();
+                    if (meleeTimer <= 0) {
+                        animator.SetTrigger("Melee");
+                        swipe.SetActive(false);
+                        swipe.SetActive(true);
+                        meleeScript.Attack();
+                        meleeTimer = meleeCooldown;
+                    }
                     break;
                 }
 
@@ -219,10 +223,13 @@ public class WizardController : MonoBehaviour
             }
         }
         if (Input.GetMouseButtonDown(2)) {
-            animator.SetTrigger("Melee");
-            swipe.SetActive(false);
-            swipe.SetActive(true);
-            meleeScript.Attack();
+            if (meleeTimer <= 0) {
+                animator.SetTrigger("Melee");
+                swipe.SetActive(false);
+                swipe.SetActive(true);
+                meleeScript.Attack();
+                meleeTimer = meleeCooldown;
+            }
         }
     }
 
@@ -328,6 +335,8 @@ public class WizardController : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height, 0f));
         return ray;
     }
+    float meleeTimer = 0.0f;
+    float meleeCooldown = 0.3f;
 
     void GetInput() {
         movementInput = Vector3.ClampMagnitude(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")), 1);

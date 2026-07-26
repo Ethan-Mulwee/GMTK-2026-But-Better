@@ -89,7 +89,7 @@ public class Enemy2 : MonoBehaviour, IHitable
 
             foreach (RaycastHit hit in raycastHits2) {
                 if (hit.rigidbody != null) {
-                    hit.rigidbody.AddForce(hit.rigidbody.position - transform.position, ForceMode.Impulse);
+                    hit.rigidbody.AddForce((hit.rigidbody.position - transform.position).normalized * 0.3f, ForceMode.Impulse);
                 }
             }
             target.cameraController.StartShake(0.3f, 0.04f);
@@ -117,6 +117,9 @@ public class Enemy2 : MonoBehaviour, IHitable
             // Debug.Log("hit player");
             // target.hurt(20);
             // Destroy(gameObject);
+        }
+        if (collision.collider.gameObject.tag == "Spell") {
+            Destroy(gameObject);
         }
         if (!following) {
             Destroy(gameObject);
