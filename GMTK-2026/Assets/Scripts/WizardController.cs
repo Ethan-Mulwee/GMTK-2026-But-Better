@@ -280,9 +280,9 @@ public class WizardController : MonoBehaviour
     }
 
     [Header("Spell 1")]
-    [SerializeField] float spell1Cooldown;
+    [SerializeField] public float spell1Cooldown;
     public float spell1InitialDelay = 0.45f;
-    [SerializeField] float spell1Timer = 0.0f;
+    [SerializeField] public float spell1Timer = 0.0f;
 
     void Spell1()
     {

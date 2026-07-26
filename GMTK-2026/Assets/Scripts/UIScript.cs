@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class UIScript : MonoBehaviour
     public Image oneIcon;
     public RectTransform Health;
     public RectTransform Stamina;
+    public RectTransform oneCooldown;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -49,5 +51,6 @@ public class UIScript : MonoBehaviour
         
         Health.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, wizard.health*(500.0f/wizard.maxHealth));
         Stamina.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, wizard.stamina*(500.0f/wizard.maxStamina));
+        oneCooldown.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (wizard.spell1Timer/wizard.spell1Cooldown)*30.0f);
     }
 }
