@@ -301,7 +301,7 @@ public class WizardController : MonoBehaviour
 
     IEnumerator Spell1Routine() {
         yield return new WaitForSeconds(spell1InitialDelay);
-        GameObject spell = Instantiate(spell1, mousePos+ new Vector3(0, 0.4f, 0), gameObject.transform.rotation);
+        GameObject spell = Instantiate(spell1, mousePos+ new Vector3(0, 1.2f, 0), gameObject.transform.rotation);
         spell.GetComponent<Spell_1>().wizard = this;
         stamina -= 40;
         cameraController.StartShake(0.1f, 0.05f);

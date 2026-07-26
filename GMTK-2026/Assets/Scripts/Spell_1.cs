@@ -4,7 +4,7 @@ public class Spell_1 : MonoBehaviour
 {
     Spell_Util util = new Spell_Util();
 
-    [SerializeField] float destroyTimer = 2.5f;
+    [SerializeField] float destroyTimer = 1.5f;
     [SerializeField] float damage;
     public WizardController wizard;
 
