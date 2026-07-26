@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum SelectedSpell {
     Melee, Three, Two, One
@@ -151,6 +152,10 @@ public class WizardController : MonoBehaviour
         spell1Timer -= Time.deltaTime;
         spell2Timer -= Time.deltaTime;
         spell3Timer -= Time.deltaTime;
+
+        if (transform.position.y < -10.0f) {
+            SceneManager.LoadScene("Dungeon");
+        }
     }
 
     void Jump() {
