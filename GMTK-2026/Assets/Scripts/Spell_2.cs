@@ -11,6 +11,7 @@ public class Spell_2 : MonoBehaviour
     [SerializeField] private int explosionCastCount = 50;
     [SerializeField] private float explosionRadius = 4.0f;
     [SerializeField] private float explosionSphereRadius = 0.5f;
+    public ParticleSystem particleSystem;
     public WizardController wizard;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,6 +66,8 @@ public class Spell_2 : MonoBehaviour
         //Create fireball explosion
         firing = false;
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        particleSystem.gameObject.SetActive(true);
+        particleSystem.Play();
 
         wizard.cameraController.StartShake(0.3f, 0.04f);
     }
